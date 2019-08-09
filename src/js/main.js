@@ -22,11 +22,28 @@ let cardsValue = [];
 const displayPairCounter = document.querySelector('.pair-counter');
 let pairCounter = 0;
 
+//! Using Fisher-Yates Algorithm to shuffle array >> got it from https://medium.com/@nitinpatel_20236/how-to-shuffle-correctly-shuffle-an-array-in-javascript-15ea3f84bfb
+const shuffle = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * array.length)
+        const temp = array[i]
+        array[i] = array[j]
+        array[j] = temp
+    }
+}
 const createCards = (value) => {
+    const array = [];
+    for (let i = 0; i < (value) / 2; i++) {
+        array.push(i);
+        array.push(i);
+        console.log(array);
+    }
+    shuffle(array);
     for (let i = 0; i < value; i++) {
         const card = document.createElement('div');
         card.className = 'card';
         card.id = i;
+        card.innerHTML = array[i];
         parent.appendChild(card);
     }
 }
