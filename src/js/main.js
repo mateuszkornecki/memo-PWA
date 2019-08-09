@@ -17,7 +17,7 @@ if ('serviceWorker' in navigator) {
 // place your code below
 
 const parent = document.querySelector('.parent');
-let cardsId = [];
+let discoveredCards = [];
 let cardsValue = [];
 const displayPairCounter = document.querySelector('.pair-counter');
 let pairCounter = 0;
@@ -36,7 +36,6 @@ const createCards = (value) => {
     for (let i = 0; i < (value) / 2; i++) {
         array.push(i);
         array.push(i);
-        console.log(array);
     }
     shuffle(array);
     for (let i = 0; i < value; i++) {
@@ -51,33 +50,42 @@ const createCards = (value) => {
 
 const game = () => {
     parent.addEventListener('click', (e) => {
-        if (cardsId.length < 2 && e.target.className === 'card') {
+        if (discoveredCards.length < 2 && e.target.className === 'card') {
             let id = parseInt(e.toElement.id);
             const card = document.getElementById(id);
             card.classList.add('card--reverse');
-            cardsId.push(id);
+            discoveredCards.push(id);
             cardsValue.push(card.innerHTML);
-
             //If pairs were found
             if (cardsValue[0] === cardsValue[1]) {
                 pairCounter++;
                 displayPairCounter.innerHTML = `Znaleziono ${pairCounter} par!`
-                cardsId.forEach(element => {
+                discoveredCards.forEach(element => {
                     const a = document.getElementById(element);
                     a.classList.remove('card');
                 })
+                discoveredCards = [];
                 cardsValue = [];
-                cardsId = [];
+            } else if (discoveredCards.length > 1 && cardsValue[0] != cardsValue[1]) {
+                //TODO CZEKAJ 3 SEKUNDY
+                //TODO ODWRÓĆ KARTY
+                //TODO WYWAL JE Z ODKRYTYCH
+                setTimeout(function() {
+                    discoveredCards.forEach(card => {
+                        const a = document.getElementById(card);
+                        a.classList.remove('card--reverse');
+                    })
+                    discoveredCards = [];
+                    cardsValue = [];
+
+
+                }, 1500);
+
             }
-        } else if (e.target.className === 'card') {
-            cardsValue = [];
-            cardsId.forEach(element => {
-                const a = document.getElementById(element);
-                a.classList.remove('card--reverse');
-            })
-            cardsId = [];
         }
+
     });
+
 }
 createCards(16);
 game();
