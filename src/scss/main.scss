@@ -22,15 +22,6 @@ body {
     height: 100vh;
 }
 
-.parent {
-    max-width: calc(200px + 1rem);
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-gap: 1rem;
-}
-
 .card {
     display: flex;
     align-items: center;
@@ -50,4 +41,19 @@ body {
         color: white;
         background-color: hotpink;
     }
+}
+
+.header {
+    position: absolute;
+    top: 1rem;
+    margin: 0 auto;
+}
+
+.parent {
+    max-width: calc(200px + 1rem);
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 1rem;
 }
