@@ -1,16 +1,41 @@
 @import "_normalize";
 @import "_variables";
-
-
 html {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-*, *:before, *:after {
-  box-sizing: inherit;
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
 }
 
 body {
-  color: $yellow;
-  background: $violet;
+    color: $yellow;
+    background: $violet;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.parent {
+    max-width: calc(200px + 1rem);
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 1rem;
+}
+
+.card {
+    height: 100px;
+    width: 100px;
+    background-color: gray;
+    &--reverse {
+        background-color: hotpink;
+    }
 }
