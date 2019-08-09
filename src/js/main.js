@@ -17,30 +17,33 @@ if ('serviceWorker' in navigator) {
 // place your code below
 
 const parent = document.querySelector('.parent');
-const array = [];
-let pairs = [];
-let counter = 0;
-
+let cardsId = [];
+let cardsValue = [];
 
 parent.addEventListener('click', (e) => {
-    counter++;
-    if (counter <= 2 && e.target.className === 'card') {
+
+    if (cardsId.length < 2 && e.target.className === 'card') {
         let id = parseInt(e.toElement.id);
         const card = document.getElementById(id);
         card.classList.add('card--reverse');
-        array.push(id);
-        pairs.push(card.innerHTML);
-        if (pairs[0] === pairs[1]) {
+        cardsId.push(id);
+        cardsValue.push(card.innerHTML);
+        if (cardsValue[0] === cardsValue[1]) {
             console.log('PARA')
-            pairs = [];
-            counter = 0;
+            cardsId.forEach(element => {
+                const a = document.getElementById(element);
+                a.classList.remove('card');
+            })
+            cardsValue = [];
+
+            cardsId = [];
         }
-    } else {
-        counter = 0;
-        pairs = [];
-        array.forEach(element => {
+    } else if (e.target.className === 'card') {
+        cardsValue = [];
+        cardsId.forEach(element => {
             const a = document.getElementById(element);
             a.classList.remove('card--reverse');
         })
+        cardsId = [];
     }
 });
