@@ -24,15 +24,18 @@ let counter = 0;
 
 parent.addEventListener('click', (e) => {
     counter++;
-    if (counter <= 2) {
+    if (counter <= 2 && e.target.className === 'card') {
         let id = parseInt(e.toElement.id);
         const card = document.getElementById(id);
         card.classList.add('card--reverse');
         array.push(id);
         pairs.push(card.innerHTML);
-        if (pairs[0] === pairs[1]) { alert('PARA'); }
+        if (pairs[0] === pairs[1]) {
+            console.log('PARA')
+            pairs = [];
+            counter = 0;
+        }
     } else {
-
         counter = 0;
         pairs = [];
         array.forEach(element => {

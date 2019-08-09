@@ -32,10 +32,16 @@ body {
 }
 
 .card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: gray;
+    font-size: 2rem;
     height: 100px;
     width: 100px;
     background-color: gray;
     &--reverse {
+        color: white;
         background-color: hotpink;
     }
 }
