@@ -26,20 +26,69 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: gray;
+    color: white;
     font-size: 2rem;
     height: 100px;
     width: 100px;
     background-color: gray;
-    &--reverse {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2rem;
-        height: 100px;
-        width: 100px;
-        color: white;
+}
+
+.card-reverse {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    height: 100px;
+    width: 100px;
+    color: white;
+    background-color: hotpink;
+    &--0 {
+        background-color: greenyellow;
+    }
+    &--1 {
+        background-color: greenyellow;
+    }
+    &--2 {
+        background-color: blue;
+    }
+    &--3 {
+        background-color: blue;
+    }
+    &--4 {
         background-color: hotpink;
+    }
+    &--5 {
+        background-color: hotpink;
+    }
+    &--6 {
+        background-color: brown;
+    }
+    &--7 {
+        background-color: brown;
+    }
+    &--8 {
+        background-color: orangered;
+    }
+    &--9 {
+        background-color: orangered;
+    }
+    &--10 {
+        background-color: green;
+    }
+    &--11 {
+        background-color: green;
+    }
+    &--12 {
+        background-color: purple;
+    }
+    &--13 {
+        background-color: purple;
+    }
+    &--14 {
+        background-color: orange;
+    }
+    &--15 {
+        background-color: orange;
     }
 }
 

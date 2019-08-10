@@ -33,15 +33,15 @@ const shuffle = (array) => {
     // Create 
 const createCards = (value) => {
     const array = [];
-    for (let i = 0; i < (value) / 2; i++) {
-        array.push(i);
+    for (let i = 0; i < (value); i++) {
         array.push(i);
     }
     shuffle(array);
     for (let i = 0; i < value; i++) {
         const card = document.createElement('div');
         card.className = 'card';
-        card.id = i;
+        card.id = array[i];
+        //! GODMODE - comment code below to disable it
         card.innerHTML = array[i];
         parent.appendChild(card);
     }
@@ -52,31 +52,38 @@ const game = () => {
         if (discoveredCards.length < 2 && e.target.className === 'card') {
             let id = parseInt(e.toElement.id);
             const card = document.getElementById(id);
-            card.classList.add('card--reverse');
+            card.classList.add('card-reverse', `card-reverse--${id}`);
             discoveredCards.push(id);
-            cardsValue.push(card.innerHTML);
-            // If pairs were found
-            if (cardsValue[0] === cardsValue[1]) {
-                pairCounter++;
-                displayPairCounter.innerHTML = `Znaleziono ${pairCounter} par!`
-                discoveredCards.forEach(element => {
-                    const a = document.getElementById(element);
-                    a.classList.remove('card');
-                })
-                discoveredCards = [];
-                cardsValue = [];
-                //If two cards does not contain pair, flip them after 1.5 sec
-            } else if (discoveredCards.length > 1 && cardsValue[0] != cardsValue[1]) {
-                setTimeout(function() {
-                    discoveredCards.forEach(card => {
-                        const a = document.getElementById(card);
-                        a.classList.remove('card--reverse');
+            let card1 = document.getElementById(discoveredCards[0]);
+            let card2 = document.getElementById(discoveredCards[1]);
+
+
+            if (discoveredCards.length > 1) {
+                let card1BackgroundColor = window.getComputedStyle(card1).getPropertyValue('background-color');
+                let card2BackgroundColor = window.getComputedStyle(card2).getPropertyValue('background-color');
+                console.log(card1BackgroundColor);
+                console.log(card2BackgroundColor);
+                // After finding pair
+                if (card1BackgroundColor === card2BackgroundColor) {
+                    pairCounter++;
+                    displayPairCounter.innerHTML = `Znaleziono ${pairCounter} par!`
+                    discoveredCards.forEach(element => {
+                        const a = document.getElementById(element);
+                        a.classList.remove('card');
+                        discoveredCards = [];
                     })
-                    discoveredCards = [];
-                    cardsValue = [];
+                } else {
+                    setTimeout(function() {
+                        discoveredCards.forEach(card => {
+                            const a = document.getElementById(card);
+                            a.classList.remove('card-reverse', `card-reverse--${card}`);
+                        })
+                        discoveredCards = [];
+                        cardsValue = [];
 
-                }, 1500);
+                    }, 1500);
 
+                }
             }
         }
     });
