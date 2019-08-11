@@ -67,7 +67,6 @@ const memo = {
             let card2BackgroundColor = window.getComputedStyle(card2).getPropertyValue('background-color');
             if (card1BackgroundColor === card2BackgroundColor) {
                 memo.pairs.push(memo.discoveredCards[0], memo.discoveredCards[1]);
-                console.log(memo.pairs);
                 card1.classList.add('card--hidden');
                 card2.classList.add('card--hidden');
                 card1.classList.remove('card');
@@ -88,28 +87,38 @@ const memo = {
         const pairsCounter = document.querySelector('.pairs-counter');
         let pairsAmount = memo.pairs.length / 2
         if (pairsAmount >= 1) {
-            console.log(typeof(pairsAmount));
-            console.log(pairsAmount);
             pairsCounter.innerHTML = `Liczba odkrytych par: ${pairsAmount}`;
             if (pairsAmount === memo.cards.length / 2) {
                 alert('Gratulacje - wygrałeś grę');
             }
         }
-    },
+    }
 };
 
 const handlers = {
     startGame: () => {
         const startButton = document.querySelector('.start-button');
         startButton.addEventListener('click', (e) => {
-            memo.setAmount(4);
+
             memo.createCards();
             memo.searchPairs();
             startButton.classList.add('start-button--hidden');
         })
+    },
+    setDifficultyLevel: () => {
+        const begginerLevelButton = document.querySelector('.level-begginer');
+        const mediumLevelButton = document.querySelector('.level-medium');
+        begginerLevelButton.addEventListener('click', (e) => {
+            memo.setAmount(8);
+            begginerLevelButton.classList.add('start-button--hidden');
+            mediumLevelButton.classList.add('start-button--hidden');
+        });
+        mediumLevelButton.addEventListener('click', (e) => {
+            memo.setAmount(16);
+            begginerLevelButton.classList.add('start-button--hidden');
+            mediumLevelButton.classList.add('start-button--hidden');
+        })
     }
-}
+};
+handlers.setDifficultyLevel();
 handlers.startGame();
-// memo.setAmount(16);
-// memo.createCards();
-// memo.searchPairs();
