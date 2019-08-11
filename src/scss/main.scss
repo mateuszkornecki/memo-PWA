@@ -31,6 +31,9 @@ body {
     height: 100px;
     width: 100px;
     background-color: gray;
+    &--hidden {
+        opacity: 0;
+    }
 }
 
 .card-reverse {

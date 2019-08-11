@@ -19,8 +19,10 @@
 const memo = {
     cards: [],
     discoveredCards: [],
+    pairs: [],
 
     shuffle: (array) => {
+        // Using Fisher-Yates Algorithm to shuffle an array >> got it from https://medium.com/@nitinpatel_20236/how-to-shuffle-correctly-shuffle-an-array-in-javascript-15ea3f84bfb
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * array.length)
             const temp = array[i]
@@ -46,16 +48,45 @@ const memo = {
     searchPairs: () => {
         parent = document.querySelector('.parent');
         parent.addEventListener('click', (e) => {
-            if (memo.discoveredCards.length < 2) {
-                console.log(e);
+            if (memo.discoveredCards.length < 2 && e.target.className === 'card') {
                 let id = parseInt(e.toElement.id);
                 const card = document.getElementById(id);
                 card.classList.add('card-reverse', `card-reverse--${id}`);
                 memo.discoveredCards.push(id);
             }
+            memo.checkPairs();
         })
+    },
+    checkPairs: () => {
+        if (memo.discoveredCards.length > 1) {
+            let card1 = document.getElementById(memo.discoveredCards[0]);
+            let card2 = document.getElementById(memo.discoveredCards[1]);
+            let card1BackgroundColor = window.getComputedStyle(card1).getPropertyValue('background-color');
+            let card2BackgroundColor = window.getComputedStyle(card2).getPropertyValue('background-color');
+            if (card1BackgroundColor === card2BackgroundColor) {
+                memo.pairs.push(memo.discoveredCards[0], memo.discoveredCards[1]);
+                console.log(memo.pairs);
+                card1.classList.add('card--hidden');
+                card2.classList.add('card--hidden');
+                card1.classList.remove('card');
+                card2.classList.remove('card');
+                memo.discoveredCards.length = 0;
+            } else {
+                setTimeout(() => {
+                    memo.discoveredCards.forEach(card => {
+                        const a = document.getElementById(card);
+                        a.classList.remove('card-reverse', `card-reverse--${card}`);
+                    })
+                    memo.discoveredCards.length = 0;
+                }, 1000);
+            }
+        }
     }
 };
+
+memo.setAmount(16);
+memo.createCards();
+memo.searchPairs();
 
 // const parent = document.querySelector('.parent');
 // let discoveredCards = [];
