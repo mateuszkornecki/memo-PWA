@@ -1,5 +1,6 @@
 @import "_normalize";
 @import "_variables";
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap&subset=latin-ext');
 html {
     box-sizing: border-box;
 }
@@ -11,18 +12,17 @@ html {
 }
 
 body {
-    color: $yellow;
-    background: $violet;
-}
-
-body {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
+    color: $yellow;
+    background: $violet;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .card {
+    border-radius: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -44,7 +44,6 @@ body {
     height: 100px;
     width: 100px;
     color: white;
-    background-color: hotpink;
     &--0,
     &--1 {
         background-color: greenyellow;
@@ -86,10 +85,14 @@ body {
 }
 
 .parent {
-    max-width: calc(400px + 1rem);
-    width: 100%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
     grid-gap: 1rem;
+}
+
+.start-button {
+    &--hidden {
+        display: none;
+    }
 }
