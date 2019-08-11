@@ -55,6 +55,8 @@ const memo = {
                 memo.discoveredCards.push(id);
             }
             memo.checkPairs();
+            memo.pairCounter();
+
         })
     },
     checkPairs: () => {
@@ -81,10 +83,25 @@ const memo = {
                 }, 1000);
             }
         }
-    }
+    },
+    pairCounter: () => {
+        const pairsCounter = document.querySelector('.pairs-counter');
+        let pairsAmount = memo.pairs.length / 2
+        if (pairsAmount >= 1) {
+            console.log(typeof(pairsAmount));
+            console.log(pairsAmount);
+            pairsCounter.innerHTML = `Liczba odkrytych par: ${pairsAmount}`;
+            if (pairsAmount === memo.cards.length / 2) {
+                alert('Gratulacje - wygrałeś grę');
+            }
+        }
+    },
+
+
+
 };
 
-memo.setAmount(16);
+memo.setAmount(4);
 memo.createCards();
 memo.searchPairs();
 
