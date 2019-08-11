@@ -15,11 +15,11 @@
 // }
 
 // place your code below
-const cards = [];
-const discoveredCards = [];
-const parent = document.querySelector('.parent');
 
 const memo = {
+    cards: [],
+    discoveredCards: [],
+
     shuffle: (array) => {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * array.length)
@@ -28,20 +28,32 @@ const memo = {
             array[j] = temp
         }
     },
-
     setAmount: (value) => {
         for (let i = 0; i < value; i++) {
-            this.cards.push(i);
+            memo.cards.push(i);
         }
-        shuffle(cards);
+        memo.shuffle(memo.cards);
     },
     createCards: () => {
-        this.cards.forEach((e, id) => {
+        memo.cards.forEach((cardId) => {
+            parent = document.querySelector('.parent');
             const card = document.createElement('div');
             card.className = 'card';
-            card.id = this.cards[id];
+            card.id = memo.cards[cardId];
             parent.appendChild(card);
         });
+    },
+    searchPairs: () => {
+        parent = document.querySelector('.parent');
+        parent.addEventListener('click', (e) => {
+            if (memo.discoveredCards.length < 2) {
+                console.log(e);
+                let id = parseInt(e.toElement.id);
+                const card = document.getElementById(id);
+                card.classList.add('card-reverse', `card-reverse--${id}`);
+                memo.discoveredCards.push(id);
+            }
+        })
     }
 };
 
