@@ -21,7 +21,7 @@ const memo = {
     discoveredCards: [],
     pairs: [],
 
-    shuffle: (array) => {
+    shuffle: function(array) {
         // Using Fisher-Yates Algorithm to shuffle an array >> got it from https://medium.com/@nitinpatel_20236/how-to-shuffle-correctly-shuffle-an-array-in-javascript-15ea3f84bfb
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * array.length)
@@ -30,15 +30,15 @@ const memo = {
             array[j] = temp
         }
     },
-    setAmount: (value) => {
+    setAmount: function(value) {
         // console.log(this);
         for (let i = 0; i < value; i++) {
-            memo.cards.push(i);
+            this.cards.push(i);
         }
-        memo.shuffle(memo.cards);
+        this.shuffle(memo.cards);
     },
-    createCards: () => {
-        memo.cards.forEach((cardId) => {
+    createCards: function() {
+        this.cards.forEach((cardId) => {
             parent = document.querySelector('.parent');
             const card = document.createElement('div');
             card.className = 'card';
@@ -46,7 +46,7 @@ const memo = {
             parent.appendChild(card);
         });
     },
-    searchPairs: () => {
+    searchPairs: function() {
         parent = document.querySelector('.parent');
         parent.addEventListener('click', (e) => {
             if (memo.discoveredCards.length < 2 && e.target.className === 'card') {
@@ -59,37 +59,37 @@ const memo = {
             }
         })
     },
-    checkPairs: () => {
-        if (memo.discoveredCards.length > 1) {
-            let card1 = document.getElementById(memo.discoveredCards[0]);
-            let card2 = document.getElementById(memo.discoveredCards[1]);
+    checkPairs: function() {
+        if (this.discoveredCards.length > 1) {
+            let card1 = document.getElementById(this.discoveredCards[0]);
+            let card2 = document.getElementById(this.discoveredCards[1]);
             let card1BackgroundColor = window.getComputedStyle(card1).getPropertyValue('background-color');
             let card2BackgroundColor = window.getComputedStyle(card2).getPropertyValue('background-color');
             if (card1BackgroundColor === card2BackgroundColor) {
-                memo.pairs.push(memo.discoveredCards[0], memo.discoveredCards[1]);
+                this.pairs.push(this.discoveredCards[0], this.discoveredCards[1]);
                 card1.classList.add('card--hidden');
                 card2.classList.add('card--hidden');
                 card1.classList.remove('card');
                 card2.classList.remove('card');
-                memo.discoveredCards.length = 0;
+                this.discoveredCards.length = 0;
             } else {
                 setTimeout(() => {
-                    memo.discoveredCards.forEach(card => {
+                    this.discoveredCards.forEach(card => {
                         const a = document.getElementById(card);
                         a.classList.remove('card-reverse', `card-reverse--${card}`);
                     })
-                    memo.discoveredCards.length = 0;
+                    this.discoveredCards.length = 0;
                 }, 1000);
             }
         }
 
     },
-    pairCounter: () => {
+    pairCounter: function() {
         const pairsCounter = document.querySelector('.pairs-counter');
-        let pairsAmount = memo.pairs.length / 2
+        let pairsAmount = this.pairs.length / 2
         if (pairsAmount >= 1) {
             pairsCounter.innerHTML = `Liczba odkrytych par: ${pairsAmount}`;
-            if (pairsAmount === memo.cards.length / 2) {
+            if (pairsAmount === this.cards.length / 2) {
                 alert('Gratulacje - wygrałeś grę');
             }
         }
@@ -97,17 +97,15 @@ const memo = {
 };
 
 const handlers = {
-    startGame: () => {
+    startGame: function() {
         const startButton = document.querySelector('.start-button');
         startButton.addEventListener('click', (e) => {
-
             memo.createCards();
             memo.searchPairs();
-
             startButton.classList.add('start-button--hidden');
         })
     },
-    setDifficultyLevel: () => {
+    setDifficultyLevel: function() {
         const begginerLevelButton = document.querySelector('.level-begginer');
         const mediumLevelButton = document.querySelector('.level-medium');
         begginerLevelButton.addEventListener('click', (e) => {
