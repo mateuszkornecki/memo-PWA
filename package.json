@@ -48,7 +48,5 @@
       "@babel/preset-env"
     ]
   },
-  "dependencies": {
-    "bulma": "^0.7.5"
-  }
+  "dependencies": {}
 }
