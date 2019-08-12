@@ -31,6 +31,7 @@ const memo = {
         }
     },
     setAmount: (value) => {
+        // console.log(this);
         for (let i = 0; i < value; i++) {
             memo.cards.push(i);
         }
@@ -53,10 +54,9 @@ const memo = {
                 const card = document.getElementById(id);
                 card.classList.add('card-reverse', `card-reverse--${id}`);
                 memo.discoveredCards.push(id);
+                memo.checkPairs();
+                memo.pairCounter();
             }
-            memo.checkPairs();
-            memo.pairCounter();
-
         })
     },
     checkPairs: () => {
@@ -82,6 +82,7 @@ const memo = {
                 }, 1000);
             }
         }
+
     },
     pairCounter: () => {
         const pairsCounter = document.querySelector('.pairs-counter');
@@ -102,6 +103,7 @@ const handlers = {
 
             memo.createCards();
             memo.searchPairs();
+
             startButton.classList.add('start-button--hidden');
         })
     },
