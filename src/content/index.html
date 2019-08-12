@@ -31,22 +31,26 @@
         <h1 class="heading">Memory Game </h1>
         <span class="pairs-counter"></span>
     </header>
-    <div class="handlers">
-        <button class="level-begginer">2x4</button>
-        <button class="level-medium">4x4</button>
-        <button class="start-button">start</button>
 
+
+    <div class="handlers">
+        <div>
+            <p>Set up difficulty level:</p>
+            <div class="level">
+                <input class='radio-button--begginer' type="radio" id="radio-button" name="radio-button" value="Begginer" checked>
+                <label for="radio-button">Begginer</label>
+                <input class='radio-button--medium' type="radio" id="radio-button" name="radio-button" value="Medium" checked>
+                <label for="radio-button">Medium</label>
+            </div>
+        </div>
+        <!-- <button class="level-begginer">2x4</button>
+        <button class="level-medium">4x4</button> -->
+        <button class="start-button">start</button>
+        <!-- <button class="play-again-button">play again</button> -->
 
     </div>
     <div class="parent">
-        <!-- <div class="card" id="1">1</div>
-        <div class="card" id="2">2</div>
-        <div class="card" id="3">1</div>
-        <div class="card" id="4">2</div>
-        <div class="card" id="5">4</div>
-        <div class="card" id="6">3</div>
-        <div class="card" id="7">4</div>
-        <div class="card" id="8">3</div> -->
+        <!-- filled with JavaScript -->
     </div>
     <script src="js/main.js"></script>
 </body>

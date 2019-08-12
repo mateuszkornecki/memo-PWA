@@ -106,18 +106,21 @@ const handlers = {
         })
     },
     setDifficultyLevel: function() {
-        const begginerLevelButton = document.querySelector('.level-begginer');
-        const mediumLevelButton = document.querySelector('.level-medium');
-        begginerLevelButton.addEventListener('click', (e) => {
-            memo.setAmount(8);
-            begginerLevelButton.classList.add('start-button--hidden');
-            mediumLevelButton.classList.add('start-button--hidden');
-        });
-        mediumLevelButton.addEventListener('click', (e) => {
-            memo.setAmount(16);
-            begginerLevelButton.classList.add('start-button--hidden');
-            mediumLevelButton.classList.add('start-button--hidden');
+        const level = document.querySelector('.level');
+        const radioButtonBegginer = document.querySelector('.radio-button--begginer');
+        const radioButtonMedium = document.querySelector('.radio-button--medium');
+        level.addEventListener('click', (e) => {
+            if (e.toElement.checked === true && e.toElement.className === 'radio-button--begginer') {
+                memo.setAmount(8);
+                console.log('begg');
+
+            } else if (e.toElement.className === 'radio-button--medium') {
+                memo.setAmount(16);
+                console.log('medium');
+            }
         })
+
+
     }
 };
 handlers.setDifficultyLevel();
