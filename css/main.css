@@ -5,6 +5,7 @@
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap&subset=latin-ext");
 html {
   line-height: 1.15;
   /* 1 */
@@ -318,10 +319,6 @@ html {
           box-sizing: inherit; }
 
 body {
-  color: #F9C802;
-  background: #000; }
-
-body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -331,9 +328,13 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  height: 100vh; }
+  height: 100vh;
+  color: #F9C802;
+  background: #000;
+  font-family: 'Open Sans', sans-serif; }
 
 .card {
+  border-radius: 0.5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -343,26 +344,44 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  color: gray;
+  color: white;
   font-size: 2rem;
   height: 100px;
   width: 100px;
   background-color: gray; }
-  .card--reverse {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    font-size: 2rem;
-    height: 100px;
-    width: 100px;
-    color: white;
+  .card--hidden {
+    opacity: 0; }
+
+.card-reverse {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 2rem;
+  height: 100px;
+  width: 100px;
+  color: white; }
+  .card-reverse--0, .card-reverse--1 {
+    background-color: greenyellow; }
+  .card-reverse--2, .card-reverse--3 {
+    background-color: blue; }
+  .card-reverse--4, .card-reverse--5 {
     background-color: hotpink; }
+  .card-reverse--6, .card-reverse--7 {
+    background-color: brown; }
+  .card-reverse--8, .card-reverse--9 {
+    background-color: orangered; }
+  .card-reverse--10, .card-reverse--11 {
+    background-color: green; }
+  .card-reverse--12, .card-reverse--13 {
+    background-color: purple; }
+  .card-reverse--14, .card-reverse--15 {
+    background-color: orange; }
 
 .header {
   position: absolute;
@@ -370,8 +389,6 @@ body {
   margin: 0 auto; }
 
 .parent {
-  max-width: calc(400px + 1rem);
-  width: 100%;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[4];
@@ -379,5 +396,8 @@ body {
   -ms-grid-rows: (1fr)[4];
   grid-template-rows: repeat(4, 1fr);
   grid-gap: 1rem; }
+
+.start-button--hidden {
+  display: none; }
 
 /*# sourceMappingURL=main.css.map */
