@@ -31,32 +31,33 @@ const memo = {
         }
     },
     setAmount: function(value) {
-        // console.log(this);
         this.cards.length = 0;
         for (let i = 0; i < value; i++) {
             this.cards.push(i);
         }
-        this.shuffle(memo.cards);
     },
     createCards: function() {
+        this.shuffle(this.cards);
         this.cards.forEach((cardId) => {
-            parent = document.querySelector('.parent');
+            const parent = document.querySelector('.parent');
             const card = document.createElement('div');
             card.className = 'card';
             card.id = memo.cards[cardId];
+            //! god mode remember to delete!
+            card.innerHTML = memo.cards[cardId];
             parent.appendChild(card);
         });
     },
     searchPairs: function() {
-        parent = document.querySelector('.parent');
+        const parent = document.querySelector('.parent');
         parent.addEventListener('click', (e) => {
-            if (memo.discoveredCards.length < 2 && e.target.className === 'card') {
+            if (this.discoveredCards.length < 2 && e.target.className === 'card') {
                 let id = parseInt(e.toElement.id);
                 const card = document.getElementById(id);
                 card.classList.add('card-reverse', `card-reverse--${id}`);
-                memo.discoveredCards.push(id);
-                memo.checkPairs();
-                memo.pairCounter();
+                this.discoveredCards.push(id);
+                this.checkPairs();
+                this.pairCounter();
             }
         })
     },
@@ -91,7 +92,13 @@ const memo = {
         if (pairsAmount >= 1) {
             pairsCounter.innerHTML = `Liczba odkrytych par: ${pairsAmount}`;
             if (pairsAmount === this.cards.length / 2) {
-                alert('Gratulacje - wygrałeś grę');
+                console.log('Gratulacje - wygrałeś grę');
+                //clean up board
+                const parent = document.querySelector('.parent');
+                parent.innerHTML = '';
+                handlers.playAgain();
+
+
             }
         }
     }
@@ -108,6 +115,16 @@ const handlers = {
             level.classList.add('start-button--hidden');
         })
     },
+    playAgain: function() {
+        memo.discoveredCards.length = 0;
+        memo.pairs.length = 0;
+        const startButton = document.querySelector('.start-button');
+        const level = document.querySelector('.level');
+        const playAgainButton = document.querySelector('.play-again-button');
+        startButton.classList.remove('start-button--hidden');
+        startButton.innerHTML = 'Play Again';
+        level.classList.remove('start-button--hidden');
+    },
     setDifficultyLevel: function() {
         const level = document.querySelector('.level');
         const radioButtonBegginer = document.querySelector('.radio-button--begginer');
@@ -122,20 +139,14 @@ const handlers = {
         }
         // difficultyLevel value after clicking
         level.addEventListener('click', (e) => {
-
             if (e.target.id === 'radio-button') {
                 if (radioButtonMedium.checked === true) {
                     memo.setAmount(16);
-                    console.log('medium');
                 } else {
                     memo.setAmount(8);
-                    console.log('begginer');
                 }
             }
-
         })
-
-
     }
 };
 handlers.setDifficultyLevel();
