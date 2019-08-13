@@ -1,0 +1,24 @@
+label {
+    cursor: pointer;
+    margin: 0;
+    display: inline-block;
+    padding: 0.5rem;
+}
+
+input[type="radio"] {
+    opacity: 0;
+    margin: 0;
+    width: 0;
+    padding: 0;
+}
+
+input[type="radio"]+label {
+    border: 1px solid white;
+    margin: 0;
+}
+
+input[type="radio"]:checked+label {
+    background: white;
+    color: black;
+    margin: 0;
+}

@@ -1,5 +1,6 @@
 @import "_normalize";
 @import "_variables";
+@import "_radio-buttons";
 @import url('https://fonts.googleapis.com/css?family=Fira+Code:400,600&display=swap&subset=latin-ext');
 html {
     box-sizing: border-box;
@@ -17,7 +18,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: $black;
+    background: $black;
     color: white;
     background: $violet;
     font-family: 'Fira Code', monospace;
@@ -28,7 +29,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
     font-size: 2rem;
     height: 100px;
     width: 100px;
@@ -45,7 +45,6 @@ body {
     font-size: 2rem;
     height: 100px;
     width: 100px;
-    color: white;
     &--0,
     &--1 {
         background-color: greenyellow;
@@ -81,6 +80,8 @@ body {
 }
 
 .footer {
+    max-width: 736px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
 }
@@ -89,6 +90,9 @@ body {
     position: absolute;
     top: 1rem;
     margin: 0 auto;
+    &__heading {
+        font-size: 3rem;
+    }
 }
 
 .board {
@@ -98,9 +102,31 @@ body {
     grid-gap: 1rem;
 }
 
-.start-button {
+.radio-button {
+    border: 2px solid white;
     margin: 1rem;
+}
+
+.start-button {
+    background: white;
+    border: none;
+    margin: 1rem;
+    width: 205px;
+    height: 3rem;
     &--hidden {
         display: none;
+    }
+}
+
+.set-level {
+    &__container {
+        max-width: 300px;
+        display: inline-block;
+        margin: 0px;
+        overflow: hidden;
+    }
+    &__heading {
+        text-align: center;
+        font-size: 1.5rem;
     }
 }

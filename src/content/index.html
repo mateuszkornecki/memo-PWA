@@ -28,20 +28,24 @@
 
 <body>
     <header class="header">
-        <h1 class="heading">score</h1>
+        <h1 class="header__heading">memory</h1>
         <br>
-        <span class="pairs-counter"></span>
+        <span class="header__pairs-counter pairs-counter"></span>
     </header>
     <main class="main">
+
         <div class="set-level">
-            <p>how hard?</p>
-            <input class='radio-button--begginer' type="radio" id="radio-button" name="radio-button" value="Begginer" checked>
-            <label for="radio-button">Easy</label>
-            <input class='radio-button--medium' type="radio" id="radio-button" name="radio-button" value="Medium">
-            <label for="radio-button">Medium</label>
-            <input class='radio-button--medium' type="radio" id="radio-button" name="radio-button" value="Medium">
-            <label for="radio-button">Hard</label>
+            <p class="set-level__heading">how hard?</p>
+            <div class="set-level__container">
+                <input class='radio-button--begginer' type="radio" id="radio-button--easy" name="radio-button" value="easy" checked>
+                <label for="radio-button--easy">easy</label>
+                <input class='radio-button--medium' type="radio" id="radio-button--medium" name="radio-button" value="medium">
+                <label for="radio-button--medium">medium</label>
+                <input class='radio-button--medium' type="radio" id="radio-button--hard" name="radio-button" value="hard">
+                <label for="radio-button--hard">hard</label>
+            </div>
         </div>
+        <br>
         <button class="start-button">start</button>
 
         <div class="board">
@@ -50,7 +54,7 @@
     </main>
     <footer class="footer">
         <p class="footer__description">
-            Created with ❤️ in Cracow
+            created with ❤️ in Cracow
         </p>
         <a href="https://github.com/mateuszkornecki" class="footer__link">
             <img src="assets/img/github-logo.svg" alt="github logo" class="footer__logo">
