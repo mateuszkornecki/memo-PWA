@@ -120,9 +120,9 @@ body {
 
 .set-level {
     &__container {
-        max-width: 300px;
+        border: 1px solid white;
         display: inline-block;
-        margin: 0px;
+        margin: 20px;
         overflow: hidden;
     }
     &__heading {
