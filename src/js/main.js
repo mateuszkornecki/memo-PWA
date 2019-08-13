@@ -32,6 +32,7 @@ const memo = {
     },
     setAmount: function(value) {
         // console.log(this);
+        this.cards.length = 0;
         for (let i = 0; i < value; i++) {
             this.cards.push(i);
         }
@@ -103,21 +104,35 @@ const handlers = {
             memo.createCards();
             memo.searchPairs();
             startButton.classList.add('start-button--hidden');
+            const level = document.querySelector('.level');
+            level.classList.add('start-button--hidden');
         })
     },
     setDifficultyLevel: function() {
         const level = document.querySelector('.level');
         const radioButtonBegginer = document.querySelector('.radio-button--begginer');
         const radioButtonMedium = document.querySelector('.radio-button--medium');
+        //default difficultyLevel value
+        if (radioButtonBegginer.checked === true) {
+            memo.setAmount(8);
+            console.log('begginer');
+        } else {
+            memo.setAmount(16);
+            console.log('medium');
+        }
+        // difficultyLevel value after clicking
         level.addEventListener('click', (e) => {
-            if (e.toElement.checked === true && e.toElement.className === 'radio-button--begginer') {
-                memo.setAmount(8);
-                console.log('begg');
 
-            } else if (e.toElement.className === 'radio-button--medium') {
-                memo.setAmount(16);
-                console.log('medium');
+            if (e.target.id === 'radio-button') {
+                if (radioButtonMedium.checked === true) {
+                    memo.setAmount(16);
+                    console.log('medium');
+                } else {
+                    memo.setAmount(8);
+                    console.log('begginer');
+                }
             }
+
         })
 
 
