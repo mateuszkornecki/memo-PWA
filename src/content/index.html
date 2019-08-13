@@ -28,32 +28,34 @@
 
 <body>
     <header class="header">
-        <h1 class="heading">Memory Game </h1>
+        <h1 class="heading">score</h1>
+        <br>
         <span class="pairs-counter"></span>
     </header>
-
-
-    <div class="handlers">
-        <div>
-
-            <div class="level">
-                <p>Set up difficulty level:</p>
-                <input class='radio-button--begginer' type="radio" id="radio-button" name="radio-button" value="Begginer" checked>
-                <label for="radio-button">Begginer</label>
-                <input class='radio-button--medium' type="radio" id="radio-button" name="radio-button" value="Medium">
-                <label for="radio-button">Medium</label>
-                <br>
-                <button class="start-button">start</button>
-                <!-- <button class="play-again-button start-button--hidden">play again</button> -->
-            </div>
+    <main class="main">
+        <div class="set-level">
+            <p>how hard?</p>
+            <input class='radio-button--begginer' type="radio" id="radio-button" name="radio-button" value="Begginer" checked>
+            <label for="radio-button">Easy</label>
+            <input class='radio-button--medium' type="radio" id="radio-button" name="radio-button" value="Medium">
+            <label for="radio-button">Medium</label>
+            <input class='radio-button--medium' type="radio" id="radio-button" name="radio-button" value="Medium">
+            <label for="radio-button">Hard</label>
         </div>
+        <button class="start-button">start</button>
 
-
-
-    </div>
-    <div class="parent">
-        <!-- filled with JavaScript -->
-    </div>
+        <div class="board">
+            <!-- filled with JavaScript -->
+        </div>
+    </main>
+    <footer class="footer">
+        <p class="footer__description">
+            Created with ❤️ in Cracow
+        </p>
+        <a href="https://github.com/mateuszkornecki" class="footer__link">
+            <img src="assets/img/github-logo.svg" alt="github logo" class="footer__logo">
+        </a>
+    </footer>
     <script src="js/main.js"></script>
 </body>
 

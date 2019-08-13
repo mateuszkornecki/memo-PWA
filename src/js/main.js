@@ -39,18 +39,18 @@ const memo = {
     createCards: function() {
         this.shuffle(this.cards);
         this.cards.forEach((cardId) => {
-            const parent = document.querySelector('.parent');
+            const board = document.querySelector('.board');
             const card = document.createElement('div');
             card.className = 'card';
             card.id = memo.cards[cardId];
             //! god mode remember to delete!
             card.innerHTML = memo.cards[cardId];
-            parent.appendChild(card);
+            board.appendChild(card);
         });
     },
     searchPairs: function() {
-        const parent = document.querySelector('.parent');
-        parent.addEventListener('click', (e) => {
+        const board = document.querySelector('.board');
+        board.addEventListener('click', (e) => {
             if (this.discoveredCards.length < 2 && e.target.className === 'card') {
                 let id = parseInt(e.toElement.id);
                 const card = document.getElementById(id);
@@ -94,8 +94,8 @@ const memo = {
             if (pairsAmount === this.cards.length / 2) {
                 console.log('Gratulacje - wygrałeś grę');
                 //clean up board
-                const parent = document.querySelector('.parent');
-                parent.innerHTML = '';
+                const board = document.querySelector('.board');
+                board.innerHTML = '';
                 handlers.playAgain();
 
 
@@ -111,25 +111,25 @@ const handlers = {
             memo.createCards();
             memo.searchPairs();
             startButton.classList.add('start-button--hidden');
-            const level = document.querySelector('.level');
-            level.classList.add('start-button--hidden');
+            const setLevel = document.querySelector('.set-level');
+            setLevel.classList.add('start-button--hidden');
         })
     },
     playAgain: function() {
         memo.discoveredCards.length = 0;
         memo.pairs.length = 0;
         const startButton = document.querySelector('.start-button');
-        const level = document.querySelector('.level');
+        const setLevel = document.querySelector('.set-level');
         const playAgainButton = document.querySelector('.play-again-button');
         startButton.classList.remove('start-button--hidden');
         startButton.innerHTML = 'Play Again';
-        level.classList.remove('start-button--hidden');
+        setLevel.classList.remove('start-button--hidden');
     },
-    setDifficultyLevel: function() {
-        const level = document.querySelector('.level');
+    setDifficultysetLevel: function() {
+        const setLevel = document.querySelector('.set-level');
         const radioButtonBegginer = document.querySelector('.radio-button--begginer');
         const radioButtonMedium = document.querySelector('.radio-button--medium');
-        //default difficultyLevel value
+        //default difficultysetLevel value
         if (radioButtonBegginer.checked === true) {
             memo.setAmount(8);
             console.log('begginer');
@@ -137,8 +137,8 @@ const handlers = {
             memo.setAmount(16);
             console.log('medium');
         }
-        // difficultyLevel value after clicking
-        level.addEventListener('click', (e) => {
+        // difficultysetLevel value after clicking
+        setLevel.addEventListener('click', (e) => {
             if (e.target.id === 'radio-button') {
                 if (radioButtonMedium.checked === true) {
                     memo.setAmount(16);
@@ -149,5 +149,5 @@ const handlers = {
         })
     }
 };
-handlers.setDifficultyLevel();
+handlers.setDifficultysetLevel();
 handlers.startGame();
