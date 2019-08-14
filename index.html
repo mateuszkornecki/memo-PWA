@@ -28,26 +28,35 @@
 
 <body>
     <header class="header">
-        <h1 class="heading">Memory Game </h1>
-        <span class="pairs-counter"></span>
+        <h1 class="header__heading">memory</h1>
+        <br>
+        <span class="header__pairs-counter pairs-counter"></span>
     </header>
-    <div class="handlers">
-        <button class="level-begginer">2x4</button>
-        <button class="level-medium">4x4</button>
+    <main class="main">
+
+        <div class="set-level">
+            <p class="set-level__heading">how hard?</p>
+            <div class="set-level__container">
+                <input class='radio-button--begginer' type="radio" id="radio-button--easy" name="radio-button" value="easy" checked><label for="radio-button--easy">easy</label><input class='radio-button--medium' type="radio" id="radio-button--medium"
+                    name="radio-button" value="medium"><label for="radio-button--medium">medium</label><input class='radio-button--medium' type="radio" id="radio-button--hard" name="radio-button" value="hard"><label for="radio-button--hard">hard</label>
+
+            </div>
+        </div>
+        <br>
         <button class="start-button">start</button>
 
-
-    </div>
-    <div class="parent">
-        <!-- <div class="card" id="1">1</div>
-        <div class="card" id="2">2</div>
-        <div class="card" id="3">1</div>
-        <div class="card" id="4">2</div>
-        <div class="card" id="5">4</div>
-        <div class="card" id="6">3</div>
-        <div class="card" id="7">4</div>
-        <div class="card" id="8">3</div> -->
-    </div>
+        <div class="board">
+            <!-- filled with JavaScript -->
+        </div>
+    </main>
+    <footer class="footer">
+        <p class="footer__description">
+            created with ❤️ in Cracow
+        </p>
+        <a href="https://github.com/mateuszkornecki" class="footer__link">
+            <img class="footer__image" src="assets/img/github-logo.svg" alt="github logo" class="footer__logo">
+        </a>
+    </footer>
     <script src="js/main.js"></script>
 </body>
 
