@@ -88,8 +88,10 @@ const memo = {
     pairCounter: function() {
         const pairsCounter = document.querySelector('.pairs-counter');
         let pairsAmount = this.pairs.length / 2
+
+
         if (pairsAmount >= 1) {
-            pairsCounter.innerHTML = `Liczba odkrytych par: ${pairsAmount}`;
+            pairsCounter.innerHTML = `${pairsAmount}`;
             if (pairsAmount === this.cards.length / 2) {
                 console.log('Gratulacje - wygrałeś grę');
                 //clean up board
@@ -104,7 +106,10 @@ const memo = {
 const handlers = {
     startGame: function() {
         const startButton = document.querySelector('.start-button');
+        const pairsCounter = document.querySelector('.pairs-counter');
         startButton.addEventListener('click', (e) => {
+            //reset counter value
+            pairsCounter.innerHTML = 0;
             memo.createCards();
             memo.searchPairs();
             startButton.classList.add('start-button--hidden');
@@ -119,7 +124,7 @@ const handlers = {
         const setLevel = document.querySelector('.set-level');
         const playAgainButton = document.querySelector('.play-again-button');
         startButton.classList.remove('start-button--hidden');
-        startButton.innerHTML = 'Play Again';
+        startButton.innerHTML = 'play again';
         setLevel.classList.remove('start-button--hidden');
     },
     setDifficulty: function() {
@@ -134,16 +139,13 @@ const handlers = {
         setLevel.addEventListener('click', (e) => {
             switch (e.target.id) {
                 case 'radio-button--easy':
-                    console.log('easy');
                     radioButtonMedium.checked === true;
                     memo.setAmount(8);
                     break;
                 case 'radio-button--medium':
-                    console.log('medium');
                     memo.setAmount(12);
                     break;
                 case 'radio-button--hard':
-                    console.log('hard');
                     memo.setAmount(16);
                     break;
             }
