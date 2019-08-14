@@ -2,17 +2,17 @@
 
 // service worker registration - remove if you're not going to use it
 
-// if ('serviceWorker' in navigator) {
-//     window.addEventListener('load', function() {
-//         navigator.serviceWorker.register('serviceworker.js').then(function(registration) {
-//             // Registration was successful
-//             console.log('ServiceWorker registration successful with scope: ', registration.scope);
-//         }, function(err) {
-//             // registration failed :(
-//             console.log('ServiceWorker registration failed: ', err);
-//         });
-//     });
-// }
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('serviceworker.js').then(function(registration) {
+            // Registration was successful
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, function(err) {
+            // registration failed :(
+            console.log('ServiceWorker registration failed: ', err);
+        });
+    });
+}
 
 // place your code below
 
@@ -91,7 +91,7 @@ const memo = {
 
 
         if (pairsAmount >= 1) {
-            pairsCounter.innerHTML = `${pairsAmount}`;
+            pairsCounter.innerHTML = `${pairsAmount*10}`;
             if (pairsAmount === this.cards.length / 2) {
                 console.log('Gratulacje - wygrałeś grę');
                 //clean up board
@@ -108,6 +108,7 @@ const handlers = {
         const startButton = document.querySelector('.start-button');
         const scoreTitle = document.querySelector('.header__heading');
         const pairsCounter = document.querySelector('.pairs-counter');
+        const footer = document.querySelector('.footer');
         startButton.addEventListener('click', (e) => {
             //reset counter value
             pairsCounter.innerHTML = 0;
@@ -117,6 +118,7 @@ const handlers = {
             startButton.classList.add('start-button--hidden');
             const setLevel = document.querySelector('.set-level');
             setLevel.classList.add('start-button--hidden');
+            footer.classList.add('start-button--hidden');
         })
     },
     playAgain: function() {
@@ -134,21 +136,43 @@ const handlers = {
         const radioButtonEasy = document.querySelector('.radio-button--easy');
         const radioButtonMedium = document.querySelector('.radio-button--medium');
         const radioButtonHard = document.querySelector('.radio-button--hard');
+        const board = document.querySelector('.board');
         //default difficulty value - EASY
         memo.setAmount(8);
+        board.classList.add('board--easy');
         //change difficulty value on click 
         //TODO: REMEMBER CHOOSEN DIFFICULTY!!
         setLevel.addEventListener('click', (e) => {
             switch (e.target.id) {
                 case 'radio-button--easy':
-                    radioButtonMedium.checked === true;
                     memo.setAmount(8);
+                    board.classList.add('board--easy');
+                    if (board.classList === 'board--medium') {
+                        board.classList.remove('board--medium');
+                    }
+                    if (board.classList === 'board--hard') {
+                        board.classList.remove('board--hard');
+                    }
                     break;
                 case 'radio-button--medium':
                     memo.setAmount(12);
+                    board.classList.add('board--medium');
+                    if (board.classList === 'board--easy') {
+                        board.classList.remove('board--easy');
+                    }
+                    if (board.classList === 'board--hard') {
+                        board.classList.remove('board--hard');
+                    }
                     break;
                 case 'radio-button--hard':
                     memo.setAmount(16);
+                    board.classList.add('board--hard');
+                    if (board.classList === 'board--easy') {
+                        board.classList.remove('board--easy');
+                    }
+                    if (board.classList === 'board--medium') {
+                        board.classList.remove('board--medium');
+                    }
                     break;
             }
         })

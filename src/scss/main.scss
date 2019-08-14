@@ -4,6 +4,12 @@
 @import url('https://fonts.googleapis.com/css?family=Fira+Code:400,600&display=swap&subset=latin-ext');
 html {
     box-sizing: border-box;
+    @media (max-width: $mobile) {
+        font-size: 14px;
+    }
+    @media(max-width: $mobile) {
+        font-size: 12px;
+    }
 }
 
 *,
@@ -20,19 +26,54 @@ body {
     height: 100vh;
     background: $black;
     color: white;
-    background: $violet;
     font-family: 'Fira Code', monospace;
 }
 
+.board {
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-gap: 1rem;
+    &--easy {
+        @media (max-width: $mobile) {
+            margin-top: 5rem;
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    &--medium {
+        @media (max-width: $mobile) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+    &--hard {
+        @media (max-width: $mobile) {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        @media (max-width: 380px) {
+            &>.card {
+                height: 5.25rem;
+                width: 5.25rem;
+            }
+        }
+        @media (max-width: 340px) {
+            &>.card {
+                height: 4.5rem;
+                width: 4.5rem;
+            }
+        }
+    }
+}
+
 .card {
-    border-radius: 0.25rem;
+    border-radius: 2px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 2rem;
-    height: 100px;
-    width: 100px;
     background-color: $grey;
+    height: 6.25rem;
+    width: 6.25rem;
     &--hidden {
         opacity: 0;
     }
@@ -43,8 +84,8 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 2rem;
-    height: 100px;
-    width: 100px;
+    min-height: 10px;
+    min-width: 10px;
     &--0,
     &--1 {
         background-color: greenyellow;
@@ -84,40 +125,43 @@ body {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    padding: 1rem;
+    &__image {
+        height: 1.5rem;
+        width: 1.5rem;
+    }
 }
 
 .header {
+    padding-top: 1rem;
+    // margin: 0 auto;
     position: absolute;
     top: 1rem;
-    margin: 0 auto;
     text-align: center;
+    font-size: 2rem;
     &__heading {
+        margin: 0;
         font-size: 3rem;
-        margin-bottom: 0;
     }
     &__pairs-counter {
         font-size: 2.5rem;
     }
 }
 
-.board {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    grid-gap: 1rem;
-}
-
-.radio-button {
-    border: 2px solid white;
-    margin: 1rem;
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 100vh;
 }
 
 .start-button {
     background: white;
     border: none;
-    margin: 1rem;
-    width: 205px;
-    height: 3rem;
+    padding: 1rem 4rem;
     &--hidden {
         display: none;
     }
