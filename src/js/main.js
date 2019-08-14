@@ -84,7 +84,6 @@ const memo = {
                 }, 1000);
             }
         }
-
     },
     pairCounter: function() {
         const pairsCounter = document.querySelector('.pairs-counter');
@@ -97,8 +96,6 @@ const memo = {
                 const board = document.querySelector('.board');
                 board.innerHTML = '';
                 handlers.playAgain();
-
-
             }
         }
     }
@@ -125,29 +122,33 @@ const handlers = {
         startButton.innerHTML = 'Play Again';
         setLevel.classList.remove('start-button--hidden');
     },
-    setDifficultysetLevel: function() {
+    setDifficulty: function() {
         const setLevel = document.querySelector('.set-level');
-        const radioButtonBegginer = document.querySelector('.radio-button--begginer');
+        const radioButtonEasy = document.querySelector('.radio-button--easy');
         const radioButtonMedium = document.querySelector('.radio-button--medium');
-        //default difficultysetLevel value
-        if (radioButtonBegginer.checked === true) {
-            memo.setAmount(8);
-            console.log('begginer');
-        } else {
-            memo.setAmount(16);
-            console.log('medium');
-        }
-        // difficultysetLevel value after clicking
+        const radioButtonHard = document.querySelector('.radio-button--hard');
+        //default difficulty value - EASY
+        memo.setAmount(8);
+        //change difficulty value on click 
+        //TODO: REMEMBER CHOOSEN DIFFICULTY!!
         setLevel.addEventListener('click', (e) => {
-            if (e.target.id === 'radio-button') {
-                if (radioButtonMedium.checked === true) {
-                    memo.setAmount(16);
-                } else {
+            switch (e.target.id) {
+                case 'radio-button--easy':
+                    console.log('easy');
+                    radioButtonMedium.checked === true;
                     memo.setAmount(8);
-                }
+                    break;
+                case 'radio-button--medium':
+                    console.log('medium');
+                    memo.setAmount(12);
+                    break;
+                case 'radio-button--hard':
+                    console.log('hard');
+                    memo.setAmount(16);
+                    break;
             }
         })
     }
 };
-handlers.setDifficultysetLevel();
+handlers.setDifficulty();
 handlers.startGame();
