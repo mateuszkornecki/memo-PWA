@@ -52,7 +52,7 @@ const memo = {
         const board = document.querySelector('.board');
         board.addEventListener('click', (e) => {
             if (this.discoveredCards.length < 2 && e.target.className === 'card') {
-                let id = parseInt(e.toElement.id);
+                let id = parseInt(e.target.id);
                 const card = document.getElementById(id);
                 card.classList.add('card-reverse', `card-reverse--${id}`);
                 this.discoveredCards.push(id);
