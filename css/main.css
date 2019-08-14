@@ -311,10 +311,11 @@ template {
 label {
   cursor: pointer;
   display: inline-block;
-  padding: 1rem 2rem; }
+  padding: 1rem 2rem;
+  margin: 0; }
 
 input[type="radio"] {
-  opacity: 0;
+  display: none;
   margin: 0;
   width: 0;
   padding: 0; }
@@ -324,8 +325,7 @@ label + input[type="radio"] + label {
 
 input[type="radio"]:checked + label {
   background: white;
-  color: black;
-  margin: 0; }
+  color: black; }
 
 html {
   -webkit-box-sizing: border-box;
