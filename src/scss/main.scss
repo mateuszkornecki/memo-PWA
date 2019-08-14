@@ -25,14 +25,14 @@ body {
 }
 
 .card {
-    border-radius: 0.5rem;
+    border-radius: 0.25rem;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 2rem;
     height: 100px;
     width: 100px;
-    background-color: gray;
+    background-color: $grey;
     &--hidden {
         opacity: 0;
     }

@@ -44,7 +44,7 @@ const memo = {
             card.className = 'card';
             card.id = memo.cards[cardId];
             //! god mode remember to delete!
-            card.innerHTML = memo.cards[cardId];
+            // card.innerHTML = memo.cards[cardId];
             board.appendChild(card);
         });
     },
@@ -106,10 +106,12 @@ const memo = {
 const handlers = {
     startGame: function() {
         const startButton = document.querySelector('.start-button');
+        const scoreTitle = document.querySelector('.header__heading');
         const pairsCounter = document.querySelector('.pairs-counter');
         startButton.addEventListener('click', (e) => {
             //reset counter value
             pairsCounter.innerHTML = 0;
+            scoreTitle.innerHTML = 'score';
             memo.createCards();
             memo.searchPairs();
             startButton.classList.add('start-button--hidden');
