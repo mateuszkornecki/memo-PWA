@@ -1,7 +1,7 @@
-![Project cover.](https://mateuszkornecki.github.io/memo/assets/img/cover.png "Project cover")
+![Project cover.](https://mateuszkornecki.github.io/memo-PWA/assets/img/cover.png "Project cover")
 
 # Memory Game 🎴️🃏️
-Feel free to check out the finall [result](https://mateuszkornecki.github.io/memo).
+Feel free to check out the finall [result](https://mateuszkornecki.github.io/memo-PWA).
 
 ## About the project 
 The main idea behind this project was to create simple memory game without any using tutorials that's describing how to create game like that.
