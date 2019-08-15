@@ -9,7 +9,7 @@ The main idea behind this project was to create simple memory game without any u
 The design of this website was inspired by [Hello Roman's](https://www.youtube.com/channel/UCq8XmOMtrUCb8FcFHQEd8_g/videos) 'CSS cookbook' series. <br>
 The layout was created by me, you can check out my Figma project [here](https://www.figma.com/file/CbZNbcfRPRzG6hyYCM24Np/memo?node-id=0%3A686). 
 
-### Things will be added in the future
+### Things that will be added in the future
 - Scoreboard
 - Multiplayer
 
