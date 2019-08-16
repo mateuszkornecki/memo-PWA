@@ -88,10 +88,19 @@ const memo = {
     },
     createUser() {
         const userInput = document.querySelector('.username');
+        const userSection = document.querySelector('.user');
+        userSection.classList.remove('hidden');
         userInput.addEventListener('keyup', (e) => {
             let userName = userInput.value;
             if (e.keyCode === 13) {
-                localStorage.getItem(userName) ? alert('Nazwa zajęta, wprowadź nową') : localStorage.setItem('User Name', userName);
+                if (localStorage.getItem(userName)) {
+                    alert('Nazwa zajęta, wprowadź nową');
+
+                } else {
+                    localStorage.setItem('User Name', userName);
+                    counters.saveScore();
+                    userSection.classList.add('hidden');
+                }
             }
         })
 
@@ -111,12 +120,11 @@ const counters = {
         if (pairsAmount === memo.cards.length / 2) {
             console.log('Gratulacje - wygrałeś grę');
             this.finalScore.push(score);
-            this.saveScore();
             console.log(this.finalScore);
             //clean up board
             const board = document.querySelector('.board');
             board.innerHTML = '';
-            this.finalScore.length = 0;
+
             handlers.playAgain();
         }
     },
@@ -127,7 +135,8 @@ const counters = {
     saveScore() {
         if (this.finalScore.length > 0) {
             let userName = localStorage.getItem('User Name');
-            localStorage.setItem(userName, this.finalScore[0])
+            localStorage.setItem(userName, this.finalScore[0]);
+            this.finalScore.length = 0;
 
         }
     }
@@ -146,22 +155,23 @@ const handlers = {
             scoreTitle.innerHTML = 'score';
             memo.createCards();
             memo.searchPairs();
-            startButton.classList.add('start-button--hidden');
+            startButton.classList.add('hidden');
             const setLevel = document.querySelector('.set-level');
-            setLevel.classList.add('start-button--hidden');
-            footer.classList.add('start-button--hidden');
+            setLevel.classList.add('hidden');
+            footer.classList.add('hidden');
         })
     },
     playAgain() {
+        memo.createUser();
         memo.discoveredCards.length = 0;
         memo.pairs.length = 0;
         counters.wrongMoves[0] = 0;
         const startButton = document.querySelector('.start-button');
         const setLevel = document.querySelector('.set-level');
         const playAgainButton = document.querySelector('.play-again-button');
-        startButton.classList.remove('start-button--hidden');
+        startButton.classList.remove('hidden');
         startButton.innerHTML = 'play again';
-        setLevel.classList.remove('start-button--hidden');
+        setLevel.classList.remove('hidden');
     },
     setDifficulty() {
         const setLevel = document.querySelector('.set-level');
@@ -211,4 +221,3 @@ const handlers = {
 };
 handlers.setDifficulty();
 handlers.startGame();
-memo.createUser();
