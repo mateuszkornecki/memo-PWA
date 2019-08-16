@@ -57,7 +57,7 @@ const memo = {
                 card.classList.add('card-reverse', `card-reverse--${id}`);
                 this.discoveredCards.push(id);
                 this.checkPairs();
-                this.pairCounter();
+                counters.score();
             }
         })
     },
@@ -75,6 +75,7 @@ const memo = {
                 card2.classList.remove('card');
                 this.discoveredCards.length = 0;
             } else {
+                counters.moveCounter();
                 setTimeout(() => {
                     this.discoveredCards.forEach(card => {
                         const a = document.getElementById(card);
@@ -84,24 +85,48 @@ const memo = {
                 }, 1000);
             }
         }
-    },
-    pairCounter() {
-        const pairsCounter = document.querySelector('.pairs-counter');
-        let pairsAmount = this.pairs.length / 2
-
-
-        if (pairsAmount >= 1) {
-            pairsCounter.innerHTML = `${pairsAmount*10}`;
-            if (pairsAmount === this.cards.length / 2) {
-                console.log('Gratulacje - wygrałeś grę');
-                //clean up board
-                const board = document.querySelector('.board');
-                board.innerHTML = '';
-                handlers.playAgain();
-            }
-        }
     }
+    // pairCounter() {
+    //     const pairsCounter = document.querySelector('.pairs-counter');
+    //     let pairsAmount = this.pairs.length / 2
+
+
+    //     if (pairsAmount >= 1) {
+    //         pairsCounter.innerHTML = `${pairsAmount*10}`;
+    //         if (pairsAmount === this.cards.length / 2) {
+    //             console.log('Gratulacje - wygrałeś grę');
+    //             //clean up board
+    //             const board = document.querySelector('.board');
+    //             board.innerHTML = '';
+    //             handlers.playAgain();
+    //         }
+    //     }
+    // },
+
 };
+
+const counters = {
+    wrongMoves: [0],
+    score() {
+        const pairsCounter = document.querySelector('.pairs-counter');
+        let pairsAmount = memo.pairs.length / 2
+            //add 10 point for every pair and remove 2 points for every miss
+        pairsCounter.innerHTML = `${pairsAmount*10 - this.wrongMoves[0]*2}`;
+        if (pairsAmount === memo.cards.length / 2) {
+            console.log('Gratulacje - wygrałeś grę');
+            //clean up board
+            const board = document.querySelector('.board');
+            board.innerHTML = '';
+            handlers.playAgain();
+        }
+    },
+    moveCounter() {
+        //count moves without finding pairs
+        this.wrongMoves[0]++
+    },
+
+}
+
 
 const handlers = {
     startGame() {
@@ -124,6 +149,7 @@ const handlers = {
     playAgain() {
         memo.discoveredCards.length = 0;
         memo.pairs.length = 0;
+        counters.wrongMoves[0] = 0;
         const startButton = document.querySelector('.start-button');
         const setLevel = document.querySelector('.set-level');
         const playAgainButton = document.querySelector('.play-again-button');
