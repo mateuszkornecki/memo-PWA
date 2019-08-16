@@ -85,24 +85,17 @@ const memo = {
                 }, 1000);
             }
         }
+    },
+    createUser() {
+        const userInput = document.querySelector('.username');
+        userInput.addEventListener('keyup', (e) => {
+            let userName = userInput.value;
+            if (e.keyCode === 13) {
+                localStorage.getItem(userName) ? alert('Nazwa zajęta, wprowadź nową') : localStorage.setItem('User Name', userName);
+            }
+        })
+
     }
-    // pairCounter() {
-    //     const pairsCounter = document.querySelector('.pairs-counter');
-    //     let pairsAmount = this.pairs.length / 2
-
-
-    //     if (pairsAmount >= 1) {
-    //         pairsCounter.innerHTML = `${pairsAmount*10}`;
-    //         if (pairsAmount === this.cards.length / 2) {
-    //             console.log('Gratulacje - wygrałeś grę');
-    //             //clean up board
-    //             const board = document.querySelector('.board');
-    //             board.innerHTML = '';
-    //             handlers.playAgain();
-    //         }
-    //     }
-    // },
-
 };
 
 const counters = {
@@ -123,6 +116,7 @@ const counters = {
             //clean up board
             const board = document.querySelector('.board');
             board.innerHTML = '';
+            this.finalScore.length = 0;
             handlers.playAgain();
         }
     },
@@ -132,7 +126,8 @@ const counters = {
     },
     saveScore() {
         if (this.finalScore.length > 0) {
-            localStorage.setItem('user1', this.finalScore[0])
+            let userName = localStorage.getItem('User Name');
+            localStorage.setItem(userName, this.finalScore[0])
 
         }
     }
@@ -178,7 +173,6 @@ const handlers = {
         memo.setAmount(8);
         board.classList.add('board--easy');
         //change difficulty value on click 
-        //TODO: REMEMBER CHOOSEN DIFFICULTY!!
         setLevel.addEventListener('click', (e) => {
             switch (e.target.id) {
                 case 'radio-button--easy':
@@ -217,3 +211,4 @@ const handlers = {
 };
 handlers.setDifficulty();
 handlers.startGame();
+memo.createUser();
