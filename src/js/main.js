@@ -21,7 +21,7 @@ const memo = {
     discoveredCards: [],
     pairs: [],
 
-    shuffle: function(array) {
+    shuffle(array) {
         // Using Fisher-Yates Algorithm to shuffle an array >> got it from https://medium.com/@nitinpatel_20236/how-to-shuffle-correctly-shuffle-an-array-in-javascript-15ea3f84bfb
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * array.length)
@@ -30,13 +30,13 @@ const memo = {
             array[j] = temp
         }
     },
-    setAmount: function(value) {
+    setAmount(value) {
         this.cards.length = 0;
         for (let i = 0; i < value; i++) {
             this.cards.push(i);
         }
     },
-    createCards: function() {
+    createCards() {
         this.shuffle(this.cards);
         this.cards.forEach((cardId) => {
             const board = document.querySelector('.board');
@@ -48,7 +48,7 @@ const memo = {
             board.appendChild(card);
         });
     },
-    searchPairs: function() {
+    searchPairs() {
         const board = document.querySelector('.board');
         board.addEventListener('click', (e) => {
             if (this.discoveredCards.length < 2 && e.target.className === 'card') {
@@ -61,7 +61,7 @@ const memo = {
             }
         })
     },
-    checkPairs: function() {
+    checkPairs() {
         if (this.discoveredCards.length > 1) {
             let card1 = document.getElementById(this.discoveredCards[0]);
             let card2 = document.getElementById(this.discoveredCards[1]);
@@ -85,7 +85,7 @@ const memo = {
             }
         }
     },
-    pairCounter: function() {
+    pairCounter() {
         const pairsCounter = document.querySelector('.pairs-counter');
         let pairsAmount = this.pairs.length / 2
 
@@ -104,7 +104,7 @@ const memo = {
 };
 
 const handlers = {
-    startGame: function() {
+    startGame() {
         const startButton = document.querySelector('.start-button');
         const scoreTitle = document.querySelector('.header__heading');
         const pairsCounter = document.querySelector('.pairs-counter');
@@ -121,7 +121,7 @@ const handlers = {
             footer.classList.add('start-button--hidden');
         })
     },
-    playAgain: function() {
+    playAgain() {
         memo.discoveredCards.length = 0;
         memo.pairs.length = 0;
         const startButton = document.querySelector('.start-button');
@@ -131,7 +131,7 @@ const handlers = {
         startButton.innerHTML = 'play again';
         setLevel.classList.remove('start-button--hidden');
     },
-    setDifficulty: function() {
+    setDifficulty() {
         const setLevel = document.querySelector('.set-level');
         const radioButtonEasy = document.querySelector('.radio-button--easy');
         const radioButtonMedium = document.querySelector('.radio-button--medium');
