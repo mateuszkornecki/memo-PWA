@@ -85,25 +85,6 @@ const memo = {
                 }, 1000);
             }
         }
-    },
-    createUser() {
-        const userInput = document.querySelector('.username');
-        const userSection = document.querySelector('.user');
-        userSection.classList.remove('hidden');
-        userInput.addEventListener('keyup', (e) => {
-            let userName = userInput.value;
-            if (e.keyCode === 13) {
-                if (localStorage.getItem(userName)) {
-                    alert('Nazwa zajęta, wprowadź nową');
-                } else {
-                    localStorage.setItem('User Name', userName);
-                    counters.saveScore();
-                    userSection.classList.add('hidden');
-                    userInput.value = '';
-                }
-            }
-        })
-
     }
 };
 
@@ -134,10 +115,20 @@ const counters = {
     saveScore() {
         if (this.finalScore.length > 0) {
             let userName = localStorage.getItem('User Name');
-            localStorage.setItem(userName, this.finalScore[0]);
-            this.finalScore.length = 0;
+            // localStorage.setItem(userName, this.finalScore[0]);
 
+            class User {
+                constructor(name, score) {
+                    this.name = name;
+                    this.score = score;
+                }
+            }
+            let user = new User(userName, this.finalScore[0]);
+            console.log(user);
+            localStorage.setItem(userName, JSON.stringify(user));
+            this.finalScore.length = 0;
         }
+
     }
 }
 
@@ -161,7 +152,7 @@ const handlers = {
         })
     },
     playAgain() {
-        memo.createUser();
+        this.createUser();
         memo.discoveredCards.length = 0;
         memo.pairs.length = 0;
         counters.wrongMoves[0] = 0;
@@ -216,7 +207,62 @@ const handlers = {
                     break;
             }
         })
+    },
+    createUser() {
+        const userInput = document.querySelector('.username');
+        const userSection = document.querySelector('.user');
+        userSection.classList.remove('hidden');
+        userInput.addEventListener('keyup', (e) => {
+            let userName = userInput.value;
+            if (e.keyCode === 13) {
+                if (localStorage.getItem(userName)) {
+                    alert('Nazwa zajęta, wprowadź nową');
+                } else {
+                    localStorage.setItem('User Name', userName);
+                    counters.saveScore();
+                    userSection.classList.add('hidden');
+                    userInput.value = '';
+                }
+            }
+        })
+
+    },
+    createScoreBoard() {
+        const scoreBoard = document.querySelector('.scoreboard');
+
+        const valueArray = [];
+        for (let i = 0; i < localStorage.length; i++) {
+            // console.log(localStorage.key(i));
+            let key = localStorage.key(i);
+            console.log(key);
+            // console.log(localStorage.getItem(key));
+            // let lama = JSON.parse(localStorage.getItem(key))
+            // console.log(lama);
+            //! IF its not empty object - "User Name", print all entries and parse it to JSON
+            //TODO create array of all entries (objects), sort it by score and print as html table
+            if (key != 'User Name') {
+                let getObject = JSON.parse(localStorage.getItem(localStorage.key(i)));
+                console.log(getObject);
+            }
+            // let stringify = JSON.parse(localStorage.getItem(key));
+            // console.log(stringify);
+            // valueArray.push(localStorage.getItem(key));
+            // valueArray.sort();
+            // valueArray.reverse();
+        }
+        // delete empty value from User Name
+        // valueArray.pop();
+        // console.log(valueArray);
+        // valueArray.forEach(value => {
+        //     console.log(localStorage.key(value));
+
+        // })
+        // let obj = new Object(localStorage);
+        // console.log(obj);
+
     }
+
 };
 handlers.setDifficulty();
 handlers.startGame();
+handlers.createScoreBoard();
