@@ -95,11 +95,11 @@ const memo = {
             if (e.keyCode === 13) {
                 if (localStorage.getItem(userName)) {
                     alert('Nazwa zajęta, wprowadź nową');
-
                 } else {
                     localStorage.setItem('User Name', userName);
                     counters.saveScore();
                     userSection.classList.add('hidden');
+                    userInput.value = '';
                 }
             }
         })
@@ -120,7 +120,6 @@ const counters = {
         if (pairsAmount === memo.cards.length / 2) {
             console.log('Gratulacje - wygrałeś grę');
             this.finalScore.push(score);
-            console.log(this.finalScore);
             //clean up board
             const board = document.querySelector('.board');
             board.innerHTML = '';
