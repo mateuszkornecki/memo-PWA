@@ -107,13 +107,19 @@ const memo = {
 
 const counters = {
     wrongMoves: [0],
+    finalScore: [],
     score() {
         const pairsCounter = document.querySelector('.pairs-counter');
         let pairsAmount = memo.pairs.length / 2
             //add 10 point for every pair and remove 2 points for every miss
-        pairsCounter.innerHTML = `${pairsAmount*10 - this.wrongMoves[0]*2}`;
+        let score = pairsAmount * 10 - this.wrongMoves * 2;
+        pairsCounter.innerHTML = score;
+
         if (pairsAmount === memo.cards.length / 2) {
             console.log('Gratulacje - wygrałeś grę');
+            this.finalScore.push(score);
+            this.saveScore();
+            console.log(this.finalScore);
             //clean up board
             const board = document.querySelector('.board');
             board.innerHTML = '';
@@ -124,7 +130,12 @@ const counters = {
         //count moves without finding pairs
         this.wrongMoves[0]++
     },
+    saveScore() {
+        if (this.finalScore.length > 0) {
+            localStorage.setItem('user1', this.finalScore[0])
 
+        }
+    }
 }
 
 
