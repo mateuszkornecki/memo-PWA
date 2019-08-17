@@ -18,7 +18,7 @@ The layout was created by me, you can check out my Figma project [here](https://
 - Semantic HTML5
 - Sass (SCSS)
 - Flexbox
-- CSS Grid
+- Local Storage
 - Media queries
 - JS: DOM manipulations
 - Git
