@@ -22,7 +22,8 @@ const memo = {
     pairs: [],
 
     shuffle(array) {
-        // Using Fisher-Yates Algorithm to shuffle an array >> got it from https://medium.com/@nitinpatel_20236/how-to-shuffle-correctly-shuffle-an-array-in-javascript-15ea3f84bfb
+        // Using Fisher-Yates Algorithm to shuffle an array 
+        // got it from https://medium.com/@nitinpatel_20236/how-to-shuffle-correctly-shuffle-an-array-in-javascript-15ea3f84bfb
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * array.length)
             const temp = array[i]
@@ -43,7 +44,7 @@ const memo = {
             const card = document.createElement('div');
             card.className = 'card';
             card.id = memo.cards[cardId];
-            //! god mode remember to delete!
+            //! uncomment line below to turn on godmode
             // card.innerHTML = memo.cards[cardId];
             board.appendChild(card);
         });
@@ -115,8 +116,6 @@ const counters = {
     saveScore() {
         if (this.finalScore.length > 0) {
             let userName = localStorage.getItem('User Name');
-            // localStorage.setItem(userName, this.finalScore[0]);
-
             class User {
                 constructor(name, score) {
                     this.name = name;
@@ -128,10 +127,8 @@ const counters = {
             localStorage.setItem(userName, JSON.stringify(user));
             this.finalScore.length = 0;
         }
-
     }
 }
-
 
 const handlers = {
     startGame() {
@@ -238,13 +235,11 @@ const handlers = {
         for (let i = 0; i < localStorage.length; i++) {
             let key = localStorage.key(i);
             // IF its not empty object - "User Name", print all entries and parse it to JSON
-            // THEN sort array of objects by value
             if (key != 'User Name') {
                 let user = JSON.parse(localStorage.getItem(localStorage.key(i)));
-                console.log(user);
                 users.push(user);
             }
-            console.log(users);
+            // THEN sort array of objects by value
             //got it from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
             users.sort(function(a, b) {
                 return a.score - b.score;
@@ -262,7 +257,7 @@ const handlers = {
     },
     hideScoreBoard() {
         const scoreBoard = document.querySelector('.scoreboard');
-        scoreBoard.classList.add('hidden');
+        scoreBoard.classList.add('hidden')
     }
 
 };
