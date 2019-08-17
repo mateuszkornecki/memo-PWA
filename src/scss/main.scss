@@ -19,10 +19,10 @@ html {
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr minmax(300px, 1400px) 1fr;
+    grid-template-rows: 1fr 2fr 1fr;
+    grid-template: ". header ." ". main ." ". footer .";
     height: 100vh;
     background: $black;
     color: white;
@@ -121,13 +121,12 @@ body {
 }
 
 .footer {
-    max-width: 1200px;
+    grid-area: footer;
+    margin: 0, auto;
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    position: absolute;
-    bottom: 0;
+    align-items: flex-end;
     padding: 1rem;
     &__image {
         height: 1.5rem;
@@ -136,10 +135,8 @@ body {
 }
 
 .header {
+    grid-area: header;
     padding-top: 1rem;
-    // margin: 0 auto;
-    position: absolute;
-    top: 1rem;
     text-align: center;
     font-size: 2rem;
     &__heading {
@@ -156,6 +153,7 @@ body {
 }
 
 .main {
+    grid-area: main;
     display: flex;
     flex-direction: column;
     align-items: center;

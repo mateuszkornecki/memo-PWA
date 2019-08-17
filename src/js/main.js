@@ -114,6 +114,7 @@ const counters = {
         this.wrongMoves[0]++
     },
     saveScore() {
+        //TODO allow user to use same name multiple time
         if (this.finalScore.length > 0) {
             let userName = localStorage.getItem('User Name');
             class User {
