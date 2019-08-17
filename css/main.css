@@ -344,19 +344,13 @@ html {
           box-sizing: inherit; }
 
 body {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr minmax(300px, 1400px) 1fr;
+  grid-template-columns: 1fr minmax(300px, 1400px) 1fr;
+  grid-template-rows: 1fr 2fr 1fr;
+  -ms-grid-rows: auto auto;
+      grid-template: ". header ." ". main ." ". footer .";
   height: 100vh;
   background: #171717;
   color: white;
@@ -442,7 +436,10 @@ body {
     background-color: orange; }
 
 .footer {
-  max-width: 736px;
+  -ms-grid-row: 3;
+  -ms-grid-column: 2;
+  grid-area: footer;
+  margin: 0, auto;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -450,20 +447,19 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  position: absolute;
-  bottom: 0;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
   padding: 1rem; }
   .footer__image {
     height: 1.5rem;
     width: 1.5rem; }
 
 .header {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: header;
   padding-top: 1rem;
-  position: absolute;
-  top: 1rem;
   text-align: center;
   font-size: 2rem; }
   .header__heading {
@@ -472,7 +468,13 @@ body {
   .header__pairs-counter {
     font-size: 2.5rem; }
 
+.hidden {
+  display: none; }
+
 .main {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: main;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -491,6 +493,11 @@ body {
   padding: 1rem 4rem; }
   .start-button--hidden {
     display: none; }
+
+.scoreboard__heading {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: normal; }
 
 .set-level__container {
   border: 1px solid white;
