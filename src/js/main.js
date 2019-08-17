@@ -247,7 +247,9 @@ const handlers = {
             });
             users.reverse();
             //slice it to show only top 10 scores
-            users.splice(10);
+            if (users.length > 10) {
+                users.splice(10);
+            }
         }
         // create ordered list with top scores
         users.forEach((user, index) => {
