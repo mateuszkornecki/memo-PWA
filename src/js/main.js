@@ -149,6 +149,7 @@ const handlers = {
             const setLevel = document.querySelector('.set-level');
             setLevel.classList.add('hidden');
             footer.classList.add('hidden');
+            this.hideScoreBoard()
         })
     },
     playAgain() {
@@ -162,6 +163,7 @@ const handlers = {
         startButton.classList.remove('hidden');
         startButton.innerHTML = 'play again';
         setLevel.classList.remove('hidden');
+
     },
     setDifficulty() {
         const setLevel = document.querySelector('.set-level');
@@ -223,46 +225,46 @@ const handlers = {
                     userSection.classList.add('hidden');
                     userInput.value = '';
                 }
+                handlers.createScoreBoard();
             }
         })
 
     },
     createScoreBoard() {
         const scoreBoard = document.querySelector('.scoreboard');
-
-        const valueArray = [];
+        const scoreBoardList = document.querySelector('.scoreboard__list');
+        scoreBoard.classList.remove('hidden');
+        const users = [];
         for (let i = 0; i < localStorage.length; i++) {
-            // console.log(localStorage.key(i));
             let key = localStorage.key(i);
-            console.log(key);
-            // console.log(localStorage.getItem(key));
-            // let lama = JSON.parse(localStorage.getItem(key))
-            // console.log(lama);
-            //! IF its not empty object - "User Name", print all entries and parse it to JSON
-            //TODO create array of all entries (objects), sort it by score and print as html table
+            // IF its not empty object - "User Name", print all entries and parse it to JSON
+            // THEN sort array of objects by value
             if (key != 'User Name') {
-                let getObject = JSON.parse(localStorage.getItem(localStorage.key(i)));
-                console.log(getObject);
+                let user = JSON.parse(localStorage.getItem(localStorage.key(i)));
+                console.log(user);
+                users.push(user);
             }
-            // let stringify = JSON.parse(localStorage.getItem(key));
-            // console.log(stringify);
-            // valueArray.push(localStorage.getItem(key));
-            // valueArray.sort();
-            // valueArray.reverse();
+            console.log(users);
+            //got it from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+            users.sort(function(a, b) {
+                return a.score - b.score;
+            });
+            users.reverse();
         }
-        // delete empty value from User Name
-        // valueArray.pop();
-        // console.log(valueArray);
-        // valueArray.forEach(value => {
-        //     console.log(localStorage.key(value));
+        // create ordered list with top scores
+        users.forEach((user, index) => {
+            const li = document.createElement('li');
+            li.classname = 'scoreboard__item';
+            scoreBoardList.appendChild(li);
+            li.innerHTML = ` ${user.name} ${user.score}`;
+        })
 
-        // })
-        // let obj = new Object(localStorage);
-        // console.log(obj);
-
+    },
+    hideScoreBoard() {
+        const scoreBoard = document.querySelector('.scoreboard');
+        scoreBoard.classList.add('hidden');
     }
 
 };
 handlers.setDifficulty();
 handlers.startGame();
-handlers.createScoreBoard();

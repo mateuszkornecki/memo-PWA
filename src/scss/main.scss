@@ -171,6 +171,14 @@ body {
     }
 }
 
+.scoreboard {
+    &__heading {
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: normal;
+    }
+}
+
 .set-level {
     &__container {
         border: 1px solid white;
