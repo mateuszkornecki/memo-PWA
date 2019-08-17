@@ -229,11 +229,14 @@ const handlers = {
 
     },
     createScoreBoard() {
+
         const scoreBoard = document.querySelector('.scoreboard');
         const scoreBoardList = document.querySelector('.scoreboard__list');
         scoreBoard.classList.remove('hidden');
+        scoreBoardList.innerHTML = '';
         const users = [];
         for (let i = 0; i < localStorage.length; i++) {
+
             let key = localStorage.key(i);
             // IF its not empty object - "User Name", print all entries and parse it to JSON
             if (key != 'User Name' && key != undefined) {
@@ -258,6 +261,8 @@ const handlers = {
             scoreBoardList.appendChild(li);
             li.innerHTML = ` ${user.name} ${user.score}`;
         })
+        users.length = 0;
+
 
     },
     hideScoreBoard() {
