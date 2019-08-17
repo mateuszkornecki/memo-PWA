@@ -236,7 +236,7 @@ const handlers = {
         for (let i = 0; i < localStorage.length; i++) {
             let key = localStorage.key(i);
             // IF its not empty object - "User Name", print all entries and parse it to JSON
-            if (key != 'User Name') {
+            if (key != 'User Name' && key != undefined) {
                 let user = JSON.parse(localStorage.getItem(localStorage.key(i)));
                 users.push(user);
             }
