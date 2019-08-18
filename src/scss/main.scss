@@ -27,6 +27,10 @@ body {
     background: $black;
     color: white;
     font-family: 'Fira Code', monospace;
+    @media (max-width: $mobile) {
+        grid-template-columns: 1fr;
+        grid-template: "header" "main" "footer";
+    }
 }
 
 .board {
