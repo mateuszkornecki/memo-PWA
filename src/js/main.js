@@ -95,7 +95,7 @@ const counters = {
     score() {
         const pairsCounter = document.querySelector('.pairs-counter');
         let pairsAmount = memo.pairs.length / 2
-            //add 10 point for every pair and remove 2 points for every miss
+            //add 10 point for evemonospacery pair and remove 2 points for every miss
         let score = pairsAmount * 10 - this.wrongMoves * 2;
         pairsCounter.innerHTML = score;
 
@@ -147,7 +147,7 @@ const handlers = {
             const setLevel = document.querySelector('.set-level');
             setLevel.classList.add('hidden');
             footer.classList.add('hidden');
-            this.hideScoreBoard()
+            this.hideScoreBoard();
         })
     },
     playAgain() {
@@ -267,7 +267,9 @@ const handlers = {
     },
     hideScoreBoard() {
         const scoreBoard = document.querySelector('.scoreboard');
+        const userSection = document.querySelector('.user');
         scoreBoard.classList.add('hidden')
+        userSection.classList.add('hidden')
     }
 
 };
