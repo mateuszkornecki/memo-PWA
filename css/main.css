@@ -355,6 +355,12 @@ body {
   background: #171717;
   color: white;
   font-family: 'Fira Code', monospace; }
+  @media (max-width: 760px) {
+    body {
+      -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+      -ms-grid-rows: auto auto;
+          grid-template: "header" "main" "footer"; } }
 
 .board {
   padding: 1rem;
@@ -486,6 +492,17 @@ body {
       -ms-flex-align: center;
           align-items: center;
   max-height: 100vh; }
+
+@media (max-width: 760px){
+    .footer {
+    -ms-grid-row: 3;
+    -ms-grid-column: 1; }
+    .header {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1; }
+    .main {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1; } }
 
 .start-button {
   background: white;
