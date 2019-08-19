@@ -526,4 +526,11 @@ body {
   text-align: center;
   font-size: 1.5rem; }
 
+.user__submit-button {
+  margin: 2rem auto;
+  display: block;
+  background: white;
+  border: none;
+  padding: 1rem 4rem; }
+
 /*# sourceMappingURL=main.css.map */
