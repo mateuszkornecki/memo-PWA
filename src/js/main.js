@@ -215,26 +215,13 @@ const handlers = {
         const user = {
             name: ''
         };
-        userSection.classList.remove('hidden');
-        userInput.addEventListener('keyup', (e) => {
-            user.name = userInput.value;
-            // if (e.keyCode === 13 ) {
-            //     if (localStorage.getItem(userName)) {
-            //         alert('Nazwa zajęta, wprowadź nową');
-            //     } else {
-            //         localStorage.setItem('User Name', userName);
-            //         counters.saveScore();
-            //         userSection.classList.add('hidden');
-            //         userInput.value = '';
-            //     }
-            //     handlers.createScoreBoard();
-            // }
-
-        })
-        submitButton.addEventListener('click', () => {
+        handlers.createScoreBoard();
+        const submitUser = () => {
             let userName = user.name;
-            if (localStorage.getItem(userName)) {
+            if (localStorage.getItem(`memo-${userName}`)) {
+
                 alert('Nazwa zajęta, wprowadź nową');
+                // localStorage.setItem('User Name', `${userName + 1}`);
             } else {
                 localStorage.setItem('User Name', userName);
                 counters.saveScore();
@@ -242,7 +229,19 @@ const handlers = {
                 userInput.value = '';
             }
             handlers.createScoreBoard();
+        };
 
+        userSection.classList.remove('hidden');
+        //use enter for submiting user
+        userInput.addEventListener('keyup', (e) => {
+                user.name = userInput.value;
+                if (e.keyCode === 13) {
+                    submitUser();
+                }
+            })
+            //use submit button for submiting user
+        submitButton.addEventListener('click', () => {
+            submitUser();
         })
 
     },
