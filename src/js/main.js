@@ -211,23 +211,42 @@ const handlers = {
     createUser() {
         const userInput = document.querySelector('.username');
         const userSection = document.querySelector('.user');
+        const submitButton = document.querySelector('.user__submit-button');
+        const user = {
+            name: ''
+        };
         userSection.classList.remove('hidden');
         userInput.addEventListener('keyup', (e) => {
-            let userName = userInput.value;
-            if (e.keyCode === 13) {
-                if (localStorage.getItem(userName)) {
-                    alert('Nazwa zajęta, wprowadź nową');
-                } else {
-                    localStorage.setItem('User Name', userName);
-                    counters.saveScore();
-                    userSection.classList.add('hidden');
-                    userInput.value = '';
-                }
-                handlers.createScoreBoard();
+            user.name = userInput.value;
+            // if (e.keyCode === 13 ) {
+            //     if (localStorage.getItem(userName)) {
+            //         alert('Nazwa zajęta, wprowadź nową');
+            //     } else {
+            //         localStorage.setItem('User Name', userName);
+            //         counters.saveScore();
+            //         userSection.classList.add('hidden');
+            //         userInput.value = '';
+            //     }
+            //     handlers.createScoreBoard();
+            // }
+
+        })
+        submitButton.addEventListener('click', () => {
+            let userName = user.name;
+            if (localStorage.getItem(userName)) {
+                alert('Nazwa zajęta, wprowadź nową');
+            } else {
+                localStorage.setItem('User Name', userName);
+                counters.saveScore();
+                userSection.classList.add('hidden');
+                userInput.value = '';
             }
+            handlers.createScoreBoard();
+
         })
 
     },
+
     createScoreBoard() {
 
         const scoreBoard = document.querySelector('.scoreboard');

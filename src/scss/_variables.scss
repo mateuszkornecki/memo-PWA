@@ -1,3 +1,8 @@
 $black: #171717;
 $grey: #5C5C5C;
 $mobile: 760px;
+@mixin button {
+    background: white;
+    border: none;
+    padding: 1rem 4rem;
+}
