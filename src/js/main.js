@@ -125,7 +125,7 @@ const counters = {
             }
             let user = new User(userName, this.finalScore[0]);
             console.log(user);
-            localStorage.setItem(userName, JSON.stringify(user));
+            localStorage.setItem(`memo-${userName}`, JSON.stringify(user));
             this.finalScore.length = 0;
         }
     }
@@ -238,8 +238,8 @@ const handlers = {
         for (let i = 0; i < localStorage.length; i++) {
 
             let key = localStorage.key(i);
-            // IF its not empty object - "User Name", print all entries and parse it to JSON
-            if (key != 'User Name' && key != undefined) {
+            //prevents pushing others local stories entries to scoreboards
+            if (key.startsWith('memo')) {
                 let user = JSON.parse(localStorage.getItem(localStorage.key(i)));
                 users.push(user);
             }
@@ -249,7 +249,7 @@ const handlers = {
                 return a.score - b.score;
             });
             users.reverse();
-            //slice it to show only top 10 scores
+            //slice it to show only top 10 score
             if (users.length > 10) {
                 users.splice(10);
             }
