@@ -124,7 +124,6 @@ const counters = {
                 }
             }
             let user = new User(userName, this.finalScore[0]);
-            console.log(user);
             localStorage.setItem(`memo-${userName}`, JSON.stringify(user));
             this.finalScore.length = 0;
         }
@@ -215,19 +214,24 @@ const handlers = {
         const user = {
             name: ''
         };
-        handlers.createScoreBoard();
-        const submitUser = () => {
-            let userName = user.name;
-            if (localStorage.getItem(`memo-${userName}`)) {
 
-                alert('Nazwa zajęta, wprowadź nową');
-                // localStorage.setItem('User Name', `${userName + 1}`);
-            } else {
-                localStorage.setItem('User Name', userName);
-                counters.saveScore();
-                userSection.classList.add('hidden');
-                userInput.value = '';
+        function submitUser() {
+            // TODO delete previous added n before adding new n
+            const memoUsers = [];
+            for (let i = 0; i < localStorage.length; i++) {
+                if (localStorage.key(i).startsWith('memo')) {
+                    memoUsers.push(localStorage.key(i));
+                }
             }
+            let n = 0;
+            while (memoUsers.includes(`memo-${user.name}`)) {
+                user.name = user.name + n;
+                n++
+            }
+            localStorage.setItem('User Name', user.name);
+            counters.saveScore();
+            userSection.classList.add('hidden');
+            userInput.value = '';
             handlers.createScoreBoard();
         };
 
@@ -240,10 +244,11 @@ const handlers = {
                 }
             })
             //use submit button for submiting user
-        submitButton.addEventListener('click', () => {
+        submitButton.addEventListener('click', (e) => {
             submitUser();
         })
-
+        handlers.createScoreBoard();
+        user.name = '';
     },
 
     createScoreBoard() {
