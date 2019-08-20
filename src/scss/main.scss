@@ -136,19 +136,61 @@ body {
         height: 1.5rem;
         width: 1.5rem;
     }
+    @media(max-width: $mobile) {
+        padding: 2rem;
+    }
 }
 
 .header {
     grid-area: header;
+    position: relative;
     padding-top: 1rem;
     text-align: center;
     font-size: 2rem;
+    &__container {
+        // display: flex;
+        justify-content: center;
+    }
     &__heading {
         margin: 0;
         font-size: 3rem;
+        line-height: 3.5rem;
     }
     &__pairs-counter {
         font-size: 2.5rem;
+    }
+    &__exit {
+        display: inline;
+        text-decoration: none;
+        color: white;
+        position: absolute;
+        top: 1.5rem;
+        right: 2rem;
+        &::before {
+            content: '';
+            position: absolute;
+            height: 3rem;
+            width: 2px;
+            background: white;
+            transform: rotate(45deg);
+            @media(max-width: $mobile) {
+                width: 1px;
+            }
+        }
+        &::after {
+            content: '';
+            position: absolute;
+            height: 3rem;
+            width: 2px;
+            background: white;
+            transform: rotate(-45deg);
+            @media(max-width: $mobile) {
+                width: 1px;
+            }
+        }
+        @media(max-width: $mobile) {
+            right: 3rem;
+        }
     }
 }
 
