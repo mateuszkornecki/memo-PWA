@@ -147,6 +147,7 @@ const handlers = {
             setLevel.classList.add('hidden');
             footer.classList.add('hidden');
             this.hideScoreBoard();
+            handlers.toggleExitButton();
         })
     },
     playAgain() {
@@ -293,6 +294,11 @@ const handlers = {
         const userSection = document.querySelector('.user');
         scoreBoard.classList.add('hidden')
         userSection.classList.add('hidden')
+    },
+
+    toggleExitButton() {
+        const exitButton = document.querySelector('.header__exit');
+        exitButton.classList.toggle('hidden');
     }
 
 };
