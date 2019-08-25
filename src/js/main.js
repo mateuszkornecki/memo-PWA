@@ -3,11 +3,11 @@
 // service worker registration - remove if you're not going to use it
 
 if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-        navigator.serviceWorker.register('serviceworker.js').then(function(registration) {
+    window.addEventListener('load', function () {
+        navigator.serviceWorker.register('serviceworker.js').then(function (registration) {
             // Registration was successful
             console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        }, function(err) {
+        }, function (err) {
             // registration failed :(
             console.log('ServiceWorker registration failed: ', err);
         });
@@ -45,7 +45,7 @@ const memo = {
             card.className = 'card';
             card.id = memo.cards[cardId];
             //! uncomment line below to turn on godmode
-            // card.innerHTML = memo.cards[cardId];
+            card.innerHTML = memo.cards[cardId];
             board.appendChild(card);
         });
     },
@@ -95,7 +95,7 @@ const counters = {
     score() {
         const pairsCounter = document.querySelector('.pairs-counter');
         let pairsAmount = memo.pairs.length / 2
-            //add 10 point for evemonospacery pair and remove 2 points for every miss
+        //add 10 point for evemonospacery pair and remove 2 points for every miss
         let score = pairsAmount * 10 - this.wrongMoves * 2;
         pairsCounter.innerHTML = score;
 
@@ -147,7 +147,10 @@ const handlers = {
             setLevel.classList.add('hidden');
             footer.classList.add('hidden');
             this.hideScoreBoard();
+            //reset finalScore in case if user didnt submit score..
+            counters.finalScore.length = 0;
             handlers.toggleExitButton();
+
         })
     },
     playAgain() {
@@ -157,10 +160,11 @@ const handlers = {
         counters.wrongMoves[0] = 0;
         const startButton = document.querySelector('.start-button');
         const setLevel = document.querySelector('.set-level');
-        const playAgainButton = document.querySelector('.play-again-button');
         startButton.classList.remove('hidden');
         startButton.innerHTML = 'play again';
         setLevel.classList.remove('hidden');
+
+
 
     },
     setDifficulty() {
@@ -239,12 +243,12 @@ const handlers = {
         userSection.classList.remove('hidden');
         //use enter for submiting user
         userInput.addEventListener('keyup', (e) => {
-                user.name = userInput.value;
-                if (e.keyCode === 13) {
-                    submitUser();
-                }
-            })
-            //use submit button for submiting user
+            user.name = userInput.value;
+            if (e.keyCode === 13) {
+                submitUser();
+            }
+        })
+        //use submit button for submiting user
         submitButton.addEventListener('click', (e) => {
             submitUser();
         })
@@ -269,7 +273,7 @@ const handlers = {
             }
             // THEN sort array of objects by value
             //got it from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
-            users.sort(function(a, b) {
+            users.sort(function (a, b) {
                 return a.score - b.score;
             });
             users.reverse();
