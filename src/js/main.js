@@ -163,7 +163,7 @@ const handlers = {
         startButton.classList.remove('hidden');
         startButton.innerHTML = 'play again';
         setLevel.classList.remove('hidden');
-
+        handlers.toggleExitButton();
 
 
     },
@@ -257,7 +257,6 @@ const handlers = {
     },
 
     createScoreBoard() {
-
         const scoreBoard = document.querySelector('.scoreboard');
         const scoreBoardList = document.querySelector('.scoreboard__list');
         scoreBoard.classList.remove('hidden');
