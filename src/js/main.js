@@ -45,7 +45,7 @@ const memo = {
             card.className = 'card';
             card.id = memo.cards[cardId];
             //! uncomment line below to turn on godmode
-            card.innerHTML = memo.cards[cardId];
+            // card.innerHTML = memo.cards[cardId];
             board.appendChild(card);
         });
     },
