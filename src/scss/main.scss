@@ -1,13 +1,13 @@
 @import "_normalize";
 @import "_variables";
 @import "_radio-buttons";
-@import url('https://fonts.googleapis.com/css?family=Fira+Code:400,600&display=swap&subset=latin-ext');
+@import url("https://fonts.googleapis.com/css?family=Fira+Code:400,600&display=swap&subset=latin-ext");
 html {
     box-sizing: border-box;
     @media (max-width: $mobile) {
         font-size: 14px;
     }
-    @media(max-width: $mobile) {
+    @media (max-width: $mobile) {
         font-size: 12px;
     }
 }
@@ -26,7 +26,7 @@ body {
     height: 100vh;
     background: $black;
     color: white;
-    font-family: 'Fira Code', monospace;
+    font-family: "Fira Code", monospace;
     @media (max-width: $mobile) {
         grid-template-columns: 1fr;
         grid-template: "header" "main" "footer";
@@ -55,13 +55,13 @@ body {
             grid-template-columns: repeat(4, 1fr);
         }
         @media (max-width: 380px) {
-            &>.card {
+            & > .card {
                 height: 5.25rem;
                 width: 5.25rem;
             }
         }
         @media (max-width: 340px) {
-            &>.card {
+            & > .card {
                 height: 4.5rem;
                 width: 4.5rem;
             }
@@ -126,17 +126,27 @@ body {
 
 .footer {
     grid-area: footer;
-    margin: 0, auto;
+    margin: 0 auto;
     width: 100%;
     display: flex;
-    justify-content: space-between;
     align-items: flex-end;
     padding: 1rem;
+
+    &__container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    &__description {
+        margin: 0;
+    }
     &__image {
         height: 1.5rem;
         width: 1.5rem;
     }
-    @media(max-width: $mobile) {
+    @media (max-width: $mobile) {
         padding: 2rem;
     }
 }
@@ -167,28 +177,28 @@ body {
         top: 1.5rem;
         right: 2rem;
         &::before {
-            content: '';
+            content: "";
             position: absolute;
             height: 3rem;
             width: 2px;
             background: white;
             transform: rotate(45deg);
-            @media(max-width: $mobile) {
+            @media (max-width: $mobile) {
                 width: 1px;
             }
         }
         &::after {
-            content: '';
+            content: "";
             position: absolute;
             height: 3rem;
             width: 2px;
             background: white;
             transform: rotate(-45deg);
-            @media(max-width: $mobile) {
+            @media (max-width: $mobile) {
                 width: 1px;
             }
         }
-        @media(max-width: $mobile) {
+        @media (max-width: $mobile) {
             right: 3rem;
         }
     }
