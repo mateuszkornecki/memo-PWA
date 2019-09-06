@@ -354,7 +354,7 @@ body {
   height: 100vh;
   background: #171717;
   color: white;
-  font-family: 'Fira Code', monospace; }
+  font-family: "Fira Code", monospace; }
   @media (max-width: 760px) {
     body {
       -ms-grid-columns: 1fr;
@@ -445,18 +445,28 @@ body {
   -ms-grid-row: 3;
   -ms-grid-column: 2;
   grid-area: footer;
-  margin: 0, auto;
+  margin: 0 auto;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
   padding: 1rem; }
+  .footer__container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    width: 100%; }
+  .footer__description {
+    margin: 0; }
   .footer__image {
     height: 1.5rem;
     width: 1.5rem; }
@@ -490,7 +500,7 @@ body {
     top: 1.5rem;
     right: 2rem; }
     .header__exit::before {
-      content: '';
+      content: "";
       position: absolute;
       height: 3rem;
       width: 2px;
@@ -502,7 +512,7 @@ body {
         .header__exit::before {
           width: 1px; } }
     .header__exit::after {
-      content: '';
+      content: "";
       position: absolute;
       height: 3rem;
       width: 2px;
